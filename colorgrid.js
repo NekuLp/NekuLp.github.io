@@ -65,7 +65,7 @@
   cnv = p.createCanvas(elmnt.offsetWidth, elmnt.offsetWidth);
 
   cnv.parent('colorgrid');
-   p.frameRate(30);
+   p.frameRate(60);
    tileWidth = p.width / tileCountX;
    tileHeight = p.height / tileCountY;
 
