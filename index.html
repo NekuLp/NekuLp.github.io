@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="stylesheet" type="text/css" media="screen"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="./img/favicon2.png" type="image/x-icon" />
@@ -16,17 +16,68 @@
     
     
     
-    <title>Neku's Site</title>
+    <title>Pashekun's p5 vault</title>
     <meta name="description" content="">
     
 </head>
 
 <body>
-    <h1>Hello World</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <main>
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">                
+                <div class="col-6" id="parentcol">
+                    <div class="mb-5">
+                        <h1 class="text-center">Pashekun's p5 vault</h1>                    
+                    </div>
+                    <div id="piramides" class="block">
+                        <h2>Pirámides Rojas</h2>   
+                        <div>
+                            <strong>Controls</strong>                                
+                            <p>* MouseOver to interact</p>                            
+                        </div>                     
+                    </div>
+
+                    <div id="oscilaciones" class="block">
+                        <h2>Oscilaciones</h2>                        
+                    </div>
+
+                    <div id="oscilaciones2" class="block">
+                        <div>
+                            <h2>Oscilaciones (Alt)</h2>                        
+                            <div>
+                                <strong>Controls</strong>                                                                
+                                <p>* 1/2               : frequency x -/+</p>
+                                <p>* 3/4               : frequency y -/+</p>
+                                <p>* arrow left/right  : phi -/+</p>
+                                <p>* 7/8               : modulation frequency x -/+</p>
+                                <p>* 9/0               : modulation frequency y -/+</p>
+                                <p>* s                 : save png</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="colorgrid" class="block">                        
+                        <h2>Breathing grid</h2>   
+                        <div>
+                            <strong>Controls</strong>                                
+                            <p>* Click to randomly generate grid</p>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+    
 
      <!-- LIBS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="p5.js"></script>
+    <script src="piramides-rojas.js"></script>
+    <script src="oscilaciones.js"></script>
+    <script src="oscilaciones2.js"></script>
+    <script src="colorgrid.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
