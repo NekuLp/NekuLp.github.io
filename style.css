@@ -36,12 +36,12 @@ main {
 }
 @media (max-width: 991.98px) {
   .block {
-    padding-top: 50px;
+    margin-top: 50px;
   }
 }
 @media (max-width: 767.98px) {
   .block {
-    padding-top: 40px;
+    margin-top: 40px;
   }
 }
 
