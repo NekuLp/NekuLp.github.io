@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="icon" href="./img/favicon2.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    
+    <title>Pashekun's p5 vault - Generative</title>
+</head>
+<body class="theme-dark-sea">
+    <nav class="neon-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo glow-text">Pashekun</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link glow-text">Inicio</a></li>
+                <li><a href="generative.html" class="nav-link glow-text active">Generative</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="generative-layout">
+        <div class="viewer-container">
+            <!-- Sketch Title -->
+            <h2 id="sketch-title" class="sketch-title glow-text fade-hidden"></h2>
+
+            <!-- Left Arrow -->
+            <div class="nav-arrow prev" id="btn-prev" onclick="changeSketch(-1)">&#10094;</div>
+            
+            <!-- Loading High-Tech Overlay -->
+            <div id="loading" class="loading-overlay fade-hidden">
+                <div class="loader-percentage" id="loader-percent">0%</div>
+                <div class="cyber-progress-container">
+                    <div class="cyber-progress-fill" id="loader-fill"></div>
+                </div>
+            </div>
+
+            <!-- iframe will switch per sketch -->
+            <iframe id="sketch-viewer" class="sketch-iframe slide-center-transparent"></iframe>
+
+            <!-- Right Arrow -->
+            <div class="nav-arrow next" id="btn-next" onclick="changeSketch(1)">&#10095;</div>
+        </div>
+
+        <section class="sketch-list-section" id="sketch-drawer">
+            <div class="toggle-controls-btn glow-text" id="toggle-drawer-btn" onclick="toggleDrawer()">
+                <span id="drawer-icon">&#9650;</span> Sketches
+            </div>
+            <h2 class="glow-text sketch-list-title">Explore Gallery</h2>
+            <ul class="sketch-list" id="sketch-list-ui">
+                <!-- Dynamically generated list items -->
+            </ul>
+        </section>
+    </main>
+    
+    <script>
+        const sketches = [
+            { id: 'piramides-rojas.js', name: 'Pirámides Rojas' },
+            { id: 'oscilaciones.js', name: 'Oscilaciones' },
+            { id: 'oscilaciones2.js', name: 'Oscilaciones (Alt)' },
+            { id: 'colorgrid.js', name: 'Breathing Grid' },
+            { id: 'honokita.js', name: 'Honokita' }
+        ];
+
+        let currentIndex = 0;
+        let isTransitioning = false;
+        
+        const iframe = document.getElementById('sketch-viewer');
+        const loader = document.getElementById('loading');
+        const loaderPercent = document.getElementById('loader-percent');
+        const loaderFill = document.getElementById('loader-fill');
+        const listUI = document.getElementById('sketch-list-ui');
+        const titleEl = document.getElementById('sketch-title');
+        const drawer = document.getElementById('sketch-drawer');
+        const drawerIcon = document.getElementById('drawer-icon');
+
+        function toggleDrawer() {
+            drawer.classList.toggle('show');
+            if (drawer.classList.contains('show')) {
+                drawerIcon.innerHTML = '&#9660;'; // Point down
+            } else {
+                drawerIcon.innerHTML = '&#9650;'; // Point up
+            }
+        }
+
+        function initList() {
+            sketches.forEach((s, i) => {
+                const li = document.createElement('li');
+                li.className = 'sketch-item glow-text';
+                li.innerText = s.name;
+                li.onclick = () => loadSketch(i, i > currentIndex ? 1 : -1);
+                listUI.appendChild(li);
+            });
+        }
+
+        function updateListHighlight() {
+            Array.from(listUI.children).forEach((li, i) => {
+                if(i === currentIndex) {
+                    li.classList.add('active-sketch');
+                } else {
+                    li.classList.remove('active-sketch');
+                }
+            });
+        }
+
+        function changeSketch(direction) {
+            if (isTransitioning) return;
+            let nextIndex = currentIndex + direction;
+            if (nextIndex < 0) nextIndex = sketches.length - 1;
+            if (nextIndex >= sketches.length) nextIndex = 0;
+            
+            loadSketch(nextIndex, direction);
+        }
+
+        function loadSketch(index, direction) {
+            if(index === currentIndex && iframe.src.includes(sketches[index].id)) return;
+            isTransitioning = true;
+            currentIndex = index;
+            updateListHighlight();
+
+            // Fade out title
+            titleEl.classList.add('fade-hidden');
+
+            // Slide out current sketch
+            if (direction > 0) {
+                iframe.className = 'sketch-iframe slide-out-left';
+            } else {
+                iframe.className = 'sketch-iframe slide-out-right';
+            }
+
+            // Show Loader with a slight delay to let the active sketch leave first
+            setTimeout(() => {
+                loader.classList.remove('fade-hidden');
+            }, 300);
+            
+            loaderPercent.innerText = '0%';
+            loaderFill.style.width = '0%';
+
+            setTimeout(() => {
+                // Disable css transition to instantly snap to center
+                iframe.style.transition = 'none';
+                iframe.className = 'sketch-iframe slide-center-transparent';
+                
+                // Change src 
+                iframe.src = `sketch-runner.html?sketch=${sketches[currentIndex].id}`;
+                
+                // Restore transition capabilities in next frame
+                requestAnimationFrame(() => {
+                    iframe.style.transition = '';
+                });
+                
+            }, 600); // match CSS transition duration
+        }
+
+        // Listen for postMessage from iframe
+        window.addEventListener('message', (event) => {
+            if (!event.data) return;
+            
+            if (event.data.type === 'progress') {
+                loaderPercent.innerText = `${event.data.value}%`;
+                loaderFill.style.width = `${event.data.value}%`;
+            } else if (event.data.type === 'loaded') {
+                titleEl.innerText = sketches[currentIndex].name;
+                loaderPercent.innerText = '100%';
+                loaderFill.style.width = '100%';
+                
+                setTimeout(() => {
+                    loader.classList.add('fade-hidden');
+                    titleEl.classList.remove('fade-hidden');
+                    
+                    // Small delay to ensure browser paints before translating to center
+                    requestAnimationFrame(() => {
+                        iframe.className = 'sketch-iframe slide-center';
+                        
+                        setTimeout(() => {
+                           // Transition done
+                           isTransitioning = false; 
+                        }, 600);
+                    });
+                }, 500);
+            } else if (event.data.type === 'drawerAction') {
+                let deltaY = event.data.deltaY;
+                let isTouch = event.data.isTouch;
+                
+                if (isTouch) {
+                    if (deltaY > 50 && !drawer.classList.contains('show')) { 
+                        toggleDrawer();
+                    } else if (deltaY < -50 && drawer.classList.contains('show')) { 
+                        toggleDrawer();
+                    }
+                } else {
+                    if (deltaY > 0 && !drawer.classList.contains('show')) {
+                        toggleDrawer();
+                    } else if (deltaY < 0 && drawer.classList.contains('show')) {
+                        toggleDrawer();
+                    }
+                }
+            }
+        });
+
+        // Initialize First
+        initList();
+        
+        // Setup initial without transition
+        loader.classList.remove('fade-hidden');
+        titleEl.innerText = sketches[currentIndex].name;
+        iframe.src = `sketch-runner.html?sketch=${sketches[currentIndex].id}`;
+        updateListHighlight();
+
+        // Mouse Wheel integration
+        window.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0 && !drawer.classList.contains('show')) {
+                // Scrolled down -> open drawer
+                toggleDrawer();
+            } else if (e.deltaY < 0 && drawer.classList.contains('show')) {
+                // Scrolled up -> close drawer
+                toggleDrawer();
+            }
+        }, {passive: true});
+
+        // Touch swipe integration for mobile
+        let touchStartY = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, {passive: true});
+        
+        window.addEventListener('touchend', (e) => {
+            let touchEndY = e.changedTouches[0].clientY;
+            let deltaY = touchStartY - touchEndY;
+            // deltaY > 50 means user swiped finger UP the screen (scrolling down)
+            if (deltaY > 50 && !drawer.classList.contains('show')) { 
+                toggleDrawer();
+            } else if (deltaY < -50 && drawer.classList.contains('show')) { 
+                toggleDrawer();
+            }
+        }, {passive: true});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketch Runner</title>
+    <!-- Use local css just in case sketches need some reset -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: transparent !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Make sure sketch containers center their canvases if they use parents */
+        #sketch-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="sketch-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="p5.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const sketchFile = urlParams.get('sketch');
+
+        const sketchDOMMap = {
+            'piramides-rojas.js': 'piramides',
+            'oscilaciones.js': 'oscilaciones',
+            'oscilaciones2.js': 'oscilaciones2',
+            'colorgrid.js': 'colorgrid'
+            // honokita.js operates globally, doesn't need an explict ID parent inside the script
+        };
+
+        if (sketchFile) {
+            // Create container if needed by the script
+            const id = sketchDOMMap[sketchFile];
+            if (id) {
+                const div = document.createElement('div');
+                div.id = id;
+                // Force size limits so offsetWidth/Height are non-zero!
+                // We use vmin to ensure it fits comfortably in both landscape and portrait, mimicking the original Bootstrap col.
+                div.style.width = '80vmin';
+                div.style.maxWidth = '800px'; 
+                div.style.height = 'auto'; 
+                div.style.display = 'flex';
+                div.style.justifyContent = 'center';
+
+                document.getElementById('sketch-container').appendChild(div);
+            }
+
+            // Load the script
+            const script = document.createElement('script');
+            script.src = sketchFile;
+            
+            // Track loading progress (simulation)
+            let loadProgress = 0;
+            let progressInterval = setInterval(() => {
+                loadProgress += Math.floor(Math.random() * 15) + 5;
+                if (loadProgress >= 90) loadProgress = 90; // Stop at 90% until fully loaded
+                window.parent.postMessage({ type: 'progress', value: loadProgress }, '*');
+            }, 100);
+
+            script.onload = () => {
+                clearInterval(progressInterval);
+                // We send 100% progress
+                window.parent.postMessage({ type: 'progress', value: 100 }, '*');
+                
+                // Then signal complete load
+                setTimeout(() => {
+                    window.parent.postMessage({ type: 'loaded', sketch: sketchFile }, '*');
+                }, 300); // tiny delay to let setup() finish
+            };
+
+            document.body.appendChild(script);
+        }
+
+        // Forward scroll/swipe events to parent if they occur OUTSIDE the canvas
+        window.addEventListener('wheel', (e) => {
+            if (e.target.tagName.toLowerCase() !== 'canvas') {
+                window.parent.postMessage({ type: 'drawerAction', deltaY: e.deltaY, isTouch: false }, '*');
+            }
+        }, {passive: true});
+
+        let touchStartY = null;
+        window.addEventListener('touchstart', (e) => {
+            if (e.target.tagName.toLowerCase() !== 'canvas') {
+                touchStartY = e.touches[0].clientY;
+            } else {
+                touchStartY = null;
+            }
+        }, {passive: true});
+
+        window.addEventListener('touchend', (e) => {
+            if (touchStartY !== null) {
+                let touchEndY = e.changedTouches[0].clientY;
+                let deltaY = touchStartY - touchEndY;
+                window.parent.postMessage({ type: 'drawerAction', deltaY: deltaY, isTouch: true }, '*');
+            }
+        }, {passive: true});
+    </script>
+</body>
+</html>
