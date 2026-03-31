@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+@import url('https://fonts.googleapis.com/css2?family=Datatype&family=Rubik+Mono+One&display=swap');
 /*!
  * Bootstrap  v5.2.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -12610,12 +12610,13 @@ body.theme-dark-sea {
 
 /* Neon Glow Effect */
 .glow-text {
-  color: #fff;
-  text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+  color: #ffffffcc;
+  text-shadow: 0 0 5px #ffc107, -1px 2px 3px #ff00ea, 1px 2px 5px #00f3ff;
+  
   transition: text-shadow 0.3s ease;
 }
 
-.glow-text:hover {
+.glow-text.hover:hover {
   text-shadow: 0 0 5px #ff00ea, 0 0 10px #ff00ea, 0 0 20px #ff00ea, 0 0 40px #ff00ea;
   color: #fff;
 }
@@ -12709,14 +12710,28 @@ body.theme-dark-sea {
   overflow: hidden;
 }
 
-.sketch-title {
+.sketch-header {
   position: absolute;
   top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 850px;
   z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.sketch-title {
+  flex: 1;
   margin: 0;
   font-size: 2.5rem;
   transition: opacity 0.5s ease;
   text-align: center;
+  padding: 0 1rem;
+  pointer-events: auto;
 }
 
 .sketch-iframe {
@@ -12840,33 +12855,37 @@ body.theme-dark-sea {
 
 /* Navigation Arrows */
 .nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(6, 13, 26, 0.6);
-  border: 2px solid #00f3ff;
-  color: #00f3ff;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 20;
-  box-shadow: 0 0 10px #00f3ff;
-  transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(6, 13, 26, 0.6);
+    border: 2px solid black;
+    color: #ffc107;
+    width: 45px;
+    height: 60px;
+    border-radius: 20%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 0 10px #ffc107;
+    transition: all 0.3s ease;
 }
 
 .nav-arrow:hover {
-  background: #00f3ff;
+  background: #bb8c00;
   color: #060d1a;
-  box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+  box-shadow: -6px 0px 16px #ffc107, 3px 0px 8px #ffc107;
 }
 
 .nav-arrow.prev {
   left: 40px;
+}
+
+.nav-arrow.prev:hover {
+  box-shadow: 6px 0px 16px #ffc107, -3px 0px 8px #ffc107;
 }
 
 .nav-arrow.next {
@@ -12954,4 +12973,147 @@ body.theme-dark-sea {
   color: #ff00ea;
   box-shadow: 0 0 15px #ff00ea inset, 0 0 15px #ff00ea;
   text-decoration: underline;
+}
+
+/* Sketch Controls Tooltip */
+.sketch-info-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: auto;
+  background: rgba(6, 13, 26, 0.8);
+  border: 1px solid #840606;
+  border-radius: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  z-index: 25;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #ffc107;
+}
+
+.sketch-info-icon:hover {
+  /* background: rgba(0, 243, 255, 0.2);
+  box-shadow: 0 0 15px #00f3ff, inset 0 0 10px #00f3ff; */
+}
+
+.info-icon-text {
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffc107;
+  text-shadow: 0 0 5px #00f3ff;
+  transition: all 0.3s ease;
+}
+
+.sketch-info-icon:hover .info-icon-text {
+  /* color: #fff; */
+  text-shadow: 0 0 10px #fff;
+}
+
+.sketch-tooltip {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: max-content;
+  max-width: 250px;
+  background: rgba(6, 13, 26, 0.95);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid #ff00ea;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 5px 20px rgba(255, 0, 234, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  pointer-events: none;
+}
+
+.sketch-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 15px;
+  width: 10px;
+  height: 10px;
+  background: rgba(6, 13, 26, 0.95);
+  border-left: 1px solid #ff00ea;
+  border-top: 1px solid #ff00ea;
+  transform: rotate(45deg);
+}
+
+.sketch-info-icon:hover .sketch-tooltip,
+.sketch-tooltip.auto-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.controls-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  row-gap: 0.8rem;
+  column-gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.control-item {
+  display: contents;
+}
+
+.control-icon {
+  font-size: 1.1rem;
+  color: #00f3ff;
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+.control-text {
+  color: #e0f7fa;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  align-self: center;
+}
+
+/* Custom Typography Overlay */
+body {
+  font-family: 'Datatype', var(--bs-font-sans-serif) !important;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .main-title, .nav-logo {
+  font-family: 'Rubik Mono One', monospace !important;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* About Me Image Placeholders */
+.placeholder-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: rgba(6, 13, 26, 0.6);
+  border: 1px solid rgba(0, 243, 255, 0.4);
+  box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: rgba(0, 243, 255, 0.7);
+  font-family: monospace;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.placeholder-img:hover {
+  border-color: #00f3ff;
+  box-shadow: inset 0 0 30px rgba(0, 243, 255, 0.2), 0 0 15px rgba(0, 243, 255, 0.2);
+  color: #00f3ff;
 }
