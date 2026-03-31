@@ -12623,7 +12623,7 @@ body.theme-dark-sea {
 
 /* Navigation Bar */
 .neon-navbar {
-  border-bottom: 2px solid #00f3ff;
+  border-bottom: 2px solid #e9ecefb3;
   box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
   background: rgba(6, 13, 26, 0.85);
   backdrop-filter: blur(10px);
@@ -12633,6 +12633,21 @@ body.theme-dark-sea {
   display: flex;
   justify-content: center;
   padding: 1rem 0;
+}
+
+@keyframes cyber-border-glitch {
+  0% {
+    background-position: 0px 0, 0% 0;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  50% {
+    filter: hue-rotate(180deg) brightness(1.2);
+  }
+  100% {
+    /* Slide the noise slightly, and circle the gradient color entirely */
+    background-position: 400px 0, -200% 0;
+    filter: hue-rotate(360deg) brightness(1);
+  }
 }
 
 .nav-container {
@@ -12647,6 +12662,30 @@ body.theme-dark-sea {
   font-size: 2rem;
   font-weight: 700;
   text-decoration: none;
+  
+  /* Cyber Glitch Effect clipped to Text */
+  background: 
+    repeating-linear-gradient(
+      90deg, 
+      transparent 0, 
+      transparent 4px, 
+      #060d1a 4px, 
+      #060d1a 7px, 
+      transparent 7px, 
+      transparent 22px, 
+      #060d1a 22px, 
+      #060d1a 24px
+    ),
+    linear-gradient(90deg, #ffbf00, #ff00ea, #00f3ff, #ff0f7b, #ffbf00);
+  background-size: 100% 100%, 200% 100%;
+  animation: cyber-border-glitch 6s linear infinite;
+  
+  color: transparent !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Gold Neon glow shadow */
+  text-shadow: 0 0 5px rgba(255, 191, 0, 0.8), 0 0 15px rgba(255, 191, 0, 0.6) !important;
 }
 
 .nav-links {
@@ -12727,7 +12766,8 @@ body.theme-dark-sea {
 .sketch-title {
   flex: 1;
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 1.6rem;
+  letter-spacing: 0%;
   transition: opacity 0.5s ease;
   text-align: center;
   padding: 0 1rem;
