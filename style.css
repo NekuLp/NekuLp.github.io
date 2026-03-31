@@ -11920,6 +11920,7 @@ p {
 .social-links__link img {
   object-fit: contain;
   filter: invert(1);
+  transition: filter 0.25s ease;
 }
 .social-links__link:hover {
   background: rgba(217, 0, 128, 0.15);
@@ -11930,6 +11931,9 @@ p {
 }
 .social-links__link:hover i, .social-links__link:hover img {
   transform: scale(1.1);
+}
+.social-links__link:hover img {
+  filter: invert(13%) sepia(95%) saturate(7483%) hue-rotate(325deg) brightness(89%) contrast(107%);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -40,6 +40,7 @@
     img {
         object-fit: contain;
         filter: invert(1);
+        transition: filter 0.25s ease;
     }
 
     &:hover {
@@ -51,6 +52,11 @@
 
       i, img {
         transform: scale(1.1);
+      }
+
+      img {
+        // Filtro aproximado para convertir blanco (#fff) a #d90080 (pink)
+        filter: invert(13%) sepia(95%) saturate(7483%) hue-rotate(325deg) brightness(89%) contrast(107%);
       }
     }
   }
