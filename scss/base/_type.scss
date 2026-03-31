@@ -1,0 +1,60 @@
+// ==========================================
+// Typography Variables & Placeholders
+// ==========================================
+
+// Variables (Placeholders para que los modifiques después)
+$font-family-body: 'Gabarito', sans-serif !important;
+$font-family-body2: 'Datatype', sans-serif !important;
+$font-family-heading: 'Rubik Mono One', monospace !important;
+
+$font-size-base: 1.6rem; // Tamaño base del documento (16px)
+$line-height-base: 1.6;
+
+// Tamaño de párrafos
+$font-size-p: 1.4rem; 
+$line-height-p: 2rem;
+$letter-spacing-p: 0.009rem;
+
+// ==========================================
+// Global Rules
+// ==========================================
+
+body {
+  font-family: $font-family-body;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: white;
+  background: rgba(0, 0, 0, 0);
+}
+
+// Headings
+h1, .h1, 
+h2, .h2, 
+h3, .h3, 
+h4, .h4, 
+h5, .h5, 
+h6, .h6, 
+.main-title, 
+.nav-logo {
+  font-family: $font-family-heading;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+// ==========================================
+// Paragraphs & Text Elements
+// ==========================================
+
+p {
+  font-family: $font-family-body;
+  font-size: $font-size-p;
+  line-height: $line-height-p;
+  letter-spacing: $letter-spacing-p;
+  margin-bottom: 1.5rem; // Espaciado natural entre párrafos
+}
+
+.lead {
+  font-size: 1.25 * $font-size-p; // 25% más grande que un párrafo normal
+  font-weight: 500;
+  // margin-bottom: 2rem;
+}

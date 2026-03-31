@@ -1,0 +1,15 @@
+/*!
+ * SCSS Architecture for Pashekun Portfolio
+ * 
+ * Compilar: sass scss/main.scss style.css
+ */
+
+// 1. Vendors (Frameworks y estilos previos para no romper layout)
+@import "vendor/legacy";
+
+// 2. Base (Tipografías, reset global de html/body, utilidades básicas)
+@import "base/type";
+
+// 3. Components / Themes (Puedes seguir segmentando si quieres a futuro)
+// @import "themes/dark-sea";
+// @import "themes/neon";
