@@ -23,7 +23,7 @@ var b2;
 
 function setup() {
   seed = int(random(0,100000));
-  createCanvas(1080, 1080);
+  createCanvas(windowWidth, windowHeight);
   noiseSeed(seed);
   colorMode(RGB);
   background('#000000');

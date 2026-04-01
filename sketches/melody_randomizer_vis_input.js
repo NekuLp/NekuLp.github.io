@@ -32,7 +32,7 @@ let centroidplot = 0.0;
 
 function setup() {
   seed = int(random(0,100000));
-  cnv = createCanvas(windowWidth,500, WEBGL);  
+  cnv = createCanvas(windowWidth,windowHeight, WEBGL);  
   cnv.mousePressed(userStartAudio);
   frameRate(60);
   noiseSeed(seed);

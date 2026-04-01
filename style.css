@@ -11366,7 +11366,6 @@ body.theme-dark-sea {
   /* Cyber Glitch Effect clipped to Text */
   background: repeating-linear-gradient(90deg, transparent 0, transparent 4px, #060d1a 4px, #060d1a 7px, transparent 7px, transparent 22px, #060d1a 22px, #060d1a 24px), linear-gradient(90deg, #ffbf00, #ff00ea, #00f3ff, #ff0f7b, #ffbf00);
   background-size: 100% 100%, 200% 100%;
-  animation: cyber-border-glitch 6s linear infinite;
   color: transparent !important;
   -webkit-background-clip: text;
   background-clip: text;
@@ -11463,6 +11462,7 @@ body.theme-dark-sea {
 .sketch-iframe {
   width: 100vw;
   height: 100%;
+  padding: 9%;
   border: none;
   background: transparent;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;

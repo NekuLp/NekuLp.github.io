@@ -47,7 +47,7 @@ var actRandomSeed = 0;
 var seno = 0;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight);
   tileWidth = width / tileCountX;
   tileHeight = height / tileCountY;
 

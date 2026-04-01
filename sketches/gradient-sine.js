@@ -51,7 +51,7 @@
  
  function setup() {
     seed = int(random(0,10000));
-   createCanvas(700, 700);
+   createCanvas(windowWidth, windowHeight);
    noiseSeed(seed);
    colorMode(RGB);
 

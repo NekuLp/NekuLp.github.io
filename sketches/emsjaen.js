@@ -33,7 +33,7 @@ var alpha2 = 0;
 
 function setup() {
   seed = int(random(0,100000));
-  createCanvas(1080, 1080);
+  createCanvas(windowWidth, windowHeight);
   noiseSeed(seed);
   colorMode(RGB, 5000);
   //background('gray');

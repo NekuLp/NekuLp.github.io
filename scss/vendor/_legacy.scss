@@ -12681,7 +12681,7 @@ body.theme-dark-sea {
     ),
     linear-gradient(90deg, #ffbf00, #ff00ea, #00f3ff, #ff0f7b, #ffbf00);
   background-size: 100% 100%, 200% 100%;
-  animation: cyber-border-glitch 6s linear infinite;
+  //animation: cyber-border-glitch 6s linear infinite;
   
   color: transparent !important;
   -webkit-background-clip: text;
@@ -12780,6 +12780,7 @@ body.theme-dark-sea {
 .sketch-iframe {
   width: 100vw;
   height: 100%;
+  padding: 9%;
   border: none;
   background: transparent;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;

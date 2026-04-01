@@ -18,50 +18,46 @@
             align-items: center;
             justify-content: center;
         }
-        /* Make sure sketch containers center their canvases if they use parents */
-        #sketch-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-        }
     </style>
 </head>
 <body>
-    <div id="sketch-container"></div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="p5.js"></script>
+    <script src="js/addons/p5.sound.min.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const sketchFile = urlParams.get('sketch');
 
-        const sketchDOMMap = {
-            'sketches/piramides-rojas.js': 'piramides',
-            'sketches/oscilaciones.js': 'oscilaciones',
-            'sketches/oscilaciones2.js': 'oscilaciones2',
-            'sketches/colorgrid.js': 'colorgrid'
-            // honokita.js operates globally, doesn't need an explict ID parent inside the script
-        };
+        // Automatic Path Resolution for Subfolders
+        const sketchPath = sketchFile && sketchFile.includes('/') 
+            ? sketchFile.substring(0, sketchFile.lastIndexOf('/') + 1) 
+            : '';
+
+        if (sketchPath) {
+            // Override p5 loading functions to support relative paths from subfolders
+            const patchP5 = () => {
+                const targets = ['loadShader', 'loadImage', 'loadSound', 'loadFont', 'loadJSON', 'loadTable', 'loadStrings', 'loadXML', 'loadBytes', 'loadModel'];
+                targets.forEach(fn => {
+                    if (p5.prototype[fn]) {
+                        const original = p5.prototype[fn];
+                        p5.prototype[fn] = function(...args) {
+                            if (typeof args[0] === 'string') {
+                                if (args[0].startsWith('./')) {
+                                    args[0] = sketchPath + args[0].substring(2);
+                                } else if (!args[0].startsWith(sketchPath) && !args[0].startsWith('/') && !args[0].startsWith('http') && !args[0].startsWith('data:')) {
+                                    args[0] = sketchPath + args[0];
+                                }
+                            }
+                            return original.apply(this, args);
+                        };
+                    }
+                });
+            };
+            patchP5();
+        }
 
         if (sketchFile) {
-            // Create container if needed by the script
-            const id = sketchDOMMap[sketchFile];
-            if (id) {
-                const div = document.createElement('div');
-                div.id = id;
-                // Force size limits so offsetWidth/Height are non-zero!
-                // We use vmin to ensure it fits comfortably in both landscape and portrait, mimicking the original Bootstrap col.
-                div.style.width = '80vmin';
-                div.style.maxWidth = '800px'; 
-                div.style.height = 'auto'; 
-                div.style.display = 'flex';
-                div.style.justifyContent = 'center';
-
-                document.getElementById('sketch-container').appendChild(div);
-            }
-
             // Load the script
             const script = document.createElement('script');
             script.src = sketchFile;
