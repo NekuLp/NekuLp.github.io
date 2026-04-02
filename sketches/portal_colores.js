@@ -11,10 +11,14 @@ var direction;
 var seed;
 
 function setup() {
-  seed = int(random(0,10000));
   createCanvas(windowWidth, windowHeight);
-  noiseSeed(seed);
   colorMode(HSB, 255);
+  initSketch();
+}
+
+function initSketch() {
+  seed = int(random(0,10000));
+  noiseSeed(seed);
   background('#000000');
 
   noFill();
@@ -22,14 +26,14 @@ function setup() {
 
   posX = width / 2;
   posY = height / 2;
-  //stroke('rgba(255,0,0,0.05)');
-  // randomOffsetX = (width - random(width));
-  // randomOffsetY = (height - random(height));
  
   direction = 2;  
 
   console.log(seed);
   console.log(direction);
+  
+  xoff = 0.0;
+  frameCount = 0;
 }
 
 
@@ -68,6 +72,10 @@ function keyPressed() {
     noLoop();
   } else if (keyCode === RIGHT_ARROW) {
     loop();
+  }
+
+  if (key === 'r' || key === 'R') {
+    initSketch();
   }
 
   if (key == 's' || key == 'S') saveCanvas('noiseportalpic', 'png');    

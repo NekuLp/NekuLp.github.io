@@ -98,25 +98,80 @@
                     { icon: '🖱️(Click) o R', text: 'Genera nueva seed 🔄' },                    
                 ]
             },
-            { id: 'sketches/gises.js', name: 'Gises' },
-            { id: 'sketches/oscilacion-mak.js', name: 'Oscilación MAK' },
-            { id: 'sketches/portal_gradient.js', name: 'Portal Gradient' },
-            { id: 'sketches/portal_colores.js', name: 'Portal Colores' },
+            { id: 'sketches/gises.js', 
+                name: 'Gises',
+                controls: [
+                    { icon: '🖱️(Click)', text: 'Crea un agente random' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄' }
+                ]
+             },
+            { 
+                id: 'sketches/oscilacion-mak.js', 
+                name: 'Oscilación MAK',
+                controls: [
+                    { icon: '1/2', text: 'FreqX +/-' },
+                    { icon: '3/4', text: 'FreqY +/-' },
+                    { icon: '7/8', text: 'ModFreqX +/-' },
+                    { icon: '9/0', text: 'ModFreqY +/-' },
+                    { icon: '⬅️/➡️', text: 'Cambia Phi' },
+                    { icon: 'S', text: 'Guardar PNG' }
+                ]
+            },
+            { 
+                id: 'sketches/portal_gradient.js', 
+                name: 'Portal Gradient',
+                controls: [
+                    { icon: '⬅️/➡️', text: 'Pausa / Play' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                    { icon: 'S', text: 'Guardar PNG' }
+                ]
+            },
+            { 
+                id: 'sketches/portal_colores.js', 
+                name: 'Portal Colores',
+                controls: [
+                    { icon: '⬅️/➡️', text: 'Pausa / Play' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                    { icon: 'S', text: 'Guardar PNG' }
+                ]
+            },
             // { id: 'sketches/colorgrid.js', name: 'Breathing Grid' },
-            { id: 'sketches/gradient-sine.js', name: 'Gradient Sine' },
+            { 
+                id: 'sketches/gradient-sine.js', 
+                name: 'Gradient Sine',
+                controls: [
+                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                    { icon: 'S', text: 'Guardar PNG' }
+                ]
+            },
             
             { id: 'sketches/primitive_shapes_3d.js', name: 'Primitive Shapes 3D' },
 
-            { id: 'sketches/emsjaen.js', name: 'Emsjaen' },
+            { 
+                id: 'sketches/emsjaen.js', 
+                name: 'Emsjaen',
+                controls: [
+                    { icon: '⬅️/➡️', text: 'Pausa / Play' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                    { icon: 'S', text: 'Guardar PNG' }
+                ]
+            },
              { 
                 id: 'sketches/3dgrid/sketch.js', 
                 name: '3D Grid (Shaders)',
                 controls: [
-                    { icon: '🖱️', text: 'Orbit control para rotar' }
+                    { icon: '🖱️', text: 'Orbit control para rotar' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄' }
                 ]
             },
             
-            { id: 'sketches/melody_randomizer_visualizer.js', name: 'Melody Visualizer' },
+            { 
+                id: 'sketches/melody_randomizer_visualizer.js', 
+                name: 'Melody Randomizer',
+                controls: [
+                    { icon: '🔊', text: '¡Tiene sonido! Dale clic para generar una melodía' }
+                ]
+            },
             { id: 'sketches/melody_randomizer_vis_input.js', name: 'Melody Visualizer (Input)' }
         ];
 

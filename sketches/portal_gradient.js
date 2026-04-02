@@ -22,41 +22,37 @@ var b2;
 
 
 function setup() {
-  seed = int(random(0,100000));
   createCanvas(windowWidth, windowHeight);
-  noiseSeed(seed);
   colorMode(RGB);
-  background('#000000');
+  initSketch();
+}
 
+function initSketch() {
+  seed = int(random(0, 100000));
+  noiseSeed(seed);
+  background('#000000');
   noFill();
   rectMode(CENTER);
 
   posX = width / 2;
   posY = height / 2;
-  //stroke('rgba(255,0,0,0.05)');
-  // randomOffsetX = (width - random(width));
-  // randomOffsetY = (height - random(height));
+
+  r1 = int(random(0, 255));
+  g1 = int(random(0, 255));
+  b1 = int(random(0, 255));
+  r2 = int(random(0, 255));
+  g2 = int(random(0, 255));
+  b2 = int(random(0, 255));
+
+  console.log('r1 ' + r1);
+  console.log('g1 ' + g1);
+  console.log('b1 ' + b1);
+  console.log('r2 ' + r2);
+  console.log('g2 ' + g2);
+  console.log('b2 ' + b2);
   
-  r1 = int(random(0,255));
-  g1 = int(random(0,255));
-  b1 = int(random(0,255));
-  r2 = int(random(0,255));
-  g2 = int(random(0,255));
-  b2 = int(random(0,255));
-
-  //console.log(seed);
-  //console.log(direction);
-  console.log('r1 '+r1)
-  console.log('g1 '+g1)
-  console.log('b1 '+b1)
-  console.log('r2 '+r2)
-  console.log('g2 '+g2)
-  console.log('b2 '+b2)
-
-
-  if(r1+g1+b1 < 250){
-    
-  }
+  xoff = 0.0;
+  frameCount = 0;
 }
 
 
@@ -101,6 +97,10 @@ function keyPressed() {
     noLoop();
   } else if (keyCode === RIGHT_ARROW) {
     loop();
+  }
+
+  if (key === 'r' || key === 'R') {
+    initSketch();
   }
 
   if (key == 's' || key == 'S') saveCanvas('noiseportalpic2', 'png');    

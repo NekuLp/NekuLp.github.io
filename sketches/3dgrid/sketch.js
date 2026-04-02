@@ -10,6 +10,15 @@ function preload() {
 function setup() {
   createCanvas(800, 800, WEBGL);
   gridSize = windowWidth/18;
+  
+  // Initialize projection and model-view matrices
+  projectionMatrix = new p5.Matrix();
+  modelViewMatrix = new p5.Matrix();
+  
+  initSketch();
+}
+
+function initSketch() {
   // Calculate the number of rows and columns based on canvas size
   rows = int(random(3,10));
   cols = int(random(3,10));
@@ -18,10 +27,6 @@ function setup() {
   
   // Generate a random pattern
   generatePattern();
-
-  // Initialize projection and model-view matrices
-  projectionMatrix = new p5.Matrix();
-  modelViewMatrix = new p5.Matrix();
 }
 
 
@@ -87,4 +92,8 @@ function generatePattern() {
   }
 }
 
-
+function keyPressed() {
+  if (key === 'r' || key === 'R') {
+    initSketch();
+  }
+}

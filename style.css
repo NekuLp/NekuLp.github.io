@@ -756,7 +756,7 @@ progress {
   }
 }
 .row {
-  --bs-gutter-x: 1.5rem;
+  --bs-gutter-x: 3rem;
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
@@ -11372,6 +11372,9 @@ body.theme-dark-sea {
   /* Gold Neon glow shadow */
   text-shadow: 0 0 5px rgba(255, 191, 0, 0.8), 0 0 15px rgba(255, 191, 0, 0.6) !important;
 }
+.is-home .nav-logo {
+  animation: cyber-border-glitch 6s linear infinite;
+}
 
 .nav-links {
   list-style: none;
@@ -11462,7 +11465,7 @@ body.theme-dark-sea {
 .sketch-iframe {
   width: 100vw;
   height: 100%;
-  padding: 9%;
+  padding: 9% 17%;
   border: none;
   background: transparent;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
@@ -11540,7 +11543,7 @@ body.theme-dark-sea {
 .cyber-progress-fill {
   height: 100%;
   width: 0%;
-  background: #00f3ff;
+  background: #eda501;
   box-shadow: -20px -12px 0px #00f3ff, inset 0px 0px 2px 0px #ff00ea;
   transition: width 0.4s ease-out;
   /* Smoothly animates width jumps */
@@ -11801,7 +11804,7 @@ body.theme-dark-sea {
 
 .control-text {
   color: #e0f7fa;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   line-height: 1.2;
   align-self: center;
 }

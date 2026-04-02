@@ -3,7 +3,12 @@ let agents = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   colorMode(RGB);
+  initSketch();
+}
+
+function initSketch() {
   background('#3f1201');
+  agents = [];
 }
 
 function draw() {
@@ -71,9 +76,12 @@ function mousePressed() {
 }
 
 function keyPressed() {
-  if (key === 'C') {
-    background(255);
-    agents = [];
+  if (key === 'r' || key === 'R') {
+    initSketch();
+  }
+
+  if (key === 'c' || key === 'C') {
+    initSketch();
   }
 
   if (keyCode === LEFT_ARROW) {

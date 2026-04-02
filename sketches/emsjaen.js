@@ -32,27 +32,32 @@ var alpha2 = 0;
 
 
 function setup() {
-  seed = int(random(0,100000));
   createCanvas(windowWidth, windowHeight);
-  noiseSeed(seed);
   colorMode(RGB, 5000);
-  //background('gray');
   frameRate(60);
-  
   noStroke();
-  
+  initSketch();
+}
 
+function initSketch() {
+  seed = int(random(0,100000));
+  noiseSeed(seed);
+  background(500, 500, 500);
+  
   colorR = int(random(0,255));
   colorG = int(random(0,255));
   colorB = int(random(0,255));
 
-
-  if(r1+g1+b1 < 250){
-    
-  }
-  limit = int(random(200,1200))
-  background(500, 500, 500);
+  limit = int(random(200,1200));
+  
+  xoff = 0.0;
+  xoffY = 100.0;
+  xoffS = 4.0;
+  energy = 0;
+  alpha2 = 0;
+  frameCount = 0;
 }
+
 
 
 
@@ -105,6 +110,10 @@ function keyPressed() {
     noLoop();
   } else if (keyCode === RIGHT_ARROW) {
     loop();
+  }
+
+  if (key === 'r' || key === 'R') {
+    initSketch();
   }
 
   if (key == 's' || key == 'S') saveCanvas('Doodles', 'png');    

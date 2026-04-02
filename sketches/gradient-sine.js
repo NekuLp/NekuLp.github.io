@@ -50,14 +50,18 @@
  
  
  function setup() {
-    seed = int(random(0,10000));
    createCanvas(windowWidth, windowHeight);
-   noiseSeed(seed);
    colorMode(RGB);
-
    tileWidth = width / tileCountX;
    tileHeight = height / tileCountY;      
    frameRate(60);   
+   initSketch();
+ }
+ 
+ function initSketch() {
+   seed = int(random(0, 10000));
+   noiseSeed(seed);
+   frameCount = 0;
  }
  
  function draw() {   
@@ -128,6 +132,10 @@
     saveCanvas('gradient-sine', 'png');
     console.log('ua');
    } 
+
+   if (key == 'r' || key == 'R') {
+     initSketch();
+   }
 
    return false;
  }
