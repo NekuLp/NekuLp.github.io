@@ -101,6 +101,7 @@ function keyPressed() {
 
   if (key === 'r' || key === 'R') {
     initSketch();
+    loop();
   }
 
   if (key == 's' || key == 'S') saveCanvas('noiseportalpic2', 'png');    

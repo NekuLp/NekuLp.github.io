@@ -131,6 +131,7 @@
                 name: 'Gises',
                 controls: [
                     { icon: '🖱️(Click)', text: 'Crea un agente random' },
+                    { icon: 'S', text: 'Guardar PNG' },
                     { icon: 'R', text: 'Reiniciar sketch 🔄' }
                 ]
              },
@@ -169,7 +170,7 @@
                 id: 'sketches/gradient-sine.js', 
                 name: 'Gradient Sine',
                 controls: [
-                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                    { icon: 'R o Click', text: 'Reiniciar sketch 🔄' },
                     { icon: 'S', text: 'Guardar PNG' }
                 ]
             },
@@ -202,7 +203,14 @@
                     { icon: '🔊', text: '¡Tiene sonido! Dale clic para generar una melodía' }
                 ]
             },
-            { id: 'sketches/melody_randomizer_vis_input.js', name: 'Melody Visualizer (Input)' },
+            { id: 'sketches/melody_randomizer_vis_input.js', 
+            description: 'Visualiza el audio que entra por el microfono',
+            controls: [
+                { icon: '🎤', text: 'Mandar audio por el microfono' },
+
+            ],
+            name: 'Melody Visualizer (Input)' 
+            },
             { id: 'sketches/genuary-2024-1-particles.js', 
             name: 'Genuary 2024 - Particles, lots of them.' ,
             controls: [
