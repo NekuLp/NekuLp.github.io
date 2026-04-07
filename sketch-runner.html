@@ -58,30 +58,56 @@
         }
 
         if (sketchFile) {
-            // Load the script
-            const script = document.createElement('script');
-            script.src = sketchFile;
-            
-            // Track loading progress (simulation)
-            let loadProgress = 0;
-            let progressInterval = setInterval(() => {
-                loadProgress += Math.floor(Math.random() * 15) + 5;
-                if (loadProgress >= 90) loadProgress = 90; // Stop at 90% until fully loaded
-                window.parent.postMessage({ type: 'progress', value: loadProgress }, '*');
-            }, 100);
-
-            script.onload = () => {
-                clearInterval(progressInterval);
-                // We send 100% progress
-                window.parent.postMessage({ type: 'progress', value: 100 }, '*');
-                
-                // Then signal complete load
-                setTimeout(() => {
-                    window.parent.postMessage({ type: 'loaded', sketch: sketchFile }, '*');
-                }, 300); // tiny delay to let setup() finish
+            // Mapping for sketches that need extra dependencies
+            const dependencies = {
+                'sketches/flow-agents/flow-agents.js': ['./sketches/flow-agents/particle.js']
             };
 
-            document.body.appendChild(script);
+            const loadScript = (src) => {
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.onload = resolve;
+                    script.onerror = (err) => {
+                        console.error('Failed to load script:', src, err);
+                        reject(err);
+                    };
+                    document.body.appendChild(script);
+                });
+            };
+
+            const runSketch = async () => {
+                // Track loading progress (simulation)
+                let loadProgress = 0;
+                let progressInterval = setInterval(() => {
+                    loadProgress += Math.floor(Math.random() * 15) + 5;
+                    if (loadProgress >= 90) loadProgress = 90;
+                    window.parent.postMessage({ type: 'progress', value: loadProgress }, '*');
+                }, 100);
+
+                try {
+                    // Load dependencies first if any
+                    const extras = dependencies[sketchFile] || [];
+                    for (const dep of extras) {
+                        await loadScript(dep);
+                    }
+
+                    // Load the main sketch
+                    await loadScript(sketchFile);
+
+                    clearInterval(progressInterval);
+                    window.parent.postMessage({ type: 'progress', value: 100 }, '*');
+                    
+                    setTimeout(() => {
+                        window.parent.postMessage({ type: 'loaded', sketch: sketchFile }, '*');
+                    }, 300);
+                } catch (e) {
+                    clearInterval(progressInterval);
+                    console.error('Error loading sketch or dependencies:', e);
+                }
+            };
+
+            runSketch();
         }
 
         // Forward scroll/swipe events to parent if they occur OUTSIDE the canvas

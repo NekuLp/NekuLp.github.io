@@ -48,6 +48,11 @@
  var inside = 10;
  var seed;
  
+ // Random color components
+ var c1r, c1g, c1b;
+ var c2r, c2g, c2b;
+ var c3r, c3g, c3b;
+ var c4r, c4g, c4b;
  
  function setup() {
    createCanvas(windowWidth, windowHeight);
@@ -60,40 +65,48 @@
  
  function initSketch() {
    seed = int(random(0, 10000));
+   randomSeed(seed);
    noiseSeed(seed);
    frameCount = 0;
+
+   // Randomize base components
+   c1r = random(255); c1g = random(255); c1b = random(255);
+   c2r = random(255); c2g = random(255); c2b = random(255);
+   c3r = random(255); c3g = random(255); c3b = random(255);
+   c4r = random(255); c4g = random(255); c4b = random(255);
  }
  
  function draw() {   
-                  
-    let from2 = color(18, 115, 32);
-    let to2 = color(15, 40, 239);
-
     seno = (sin(radians(frameCount)) * 255);
     seno2 = (sin(radians(frameCount)) * 1);
 
-    let from = color(seno, 100, 100, 255); //Start color
-    let to = color(250, 20, seno, 75); //End color
+    if (seno < 0) {
+      frameCount = 0;
+      seno = 0;
+      seno2 = 0;
+    }
+
+    let from2 = color(c3r, c3g, c3b);
+    let to2 = color(c4r, c4g, c4b);
+
+    // Modulate one channel with seno for the gradient
+    let from = color(c1r, c1g, seno, 255); 
+    let to = color(seno, c2g, c2b, 150); 
     
     let interB = lerpColor(from2, to2, seno2); 
-    
-    if(seno < 0 ){
-      frameCount = 0;
-    }       
    
-  linearGradient(
-    width/2-200, height/2-200, //Start point
-    width/2+200, height/2+200, //End point
-    from, //Start color
-    to, //End color
-  );                
+    linearGradient(
+      width/2-200, height/2-200, 
+      width/2+200, height/2+200, 
+      from, 
+      to, 
+    );                
 
-  stroke(interB);
-  strokeWeight(2);       
+    stroke(interB);
+    strokeWeight(2);       
    
-   for (var gridY = 0; gridY <= tileCountY; gridY++) {             
-     for (var gridX = 0; gridX <= tileCountX; gridX++) {                      
-                
+    for (var gridY = 0; gridY <= tileCountY; gridY++) {             
+      for (var gridX = 0; gridX <= tileCountX; gridX++) {                      
         for (var i = 0; i < inside; i++) {                                  
           push();
           let n = noise(i);          
@@ -105,12 +118,11 @@
           pop();   
         }
            
-      
-       push();                     
+        push();                     
         square(tileWidth * gridX, tileHeight *gridY, tileWidth * tileHeight);        
-       pop();       
-     }                 
-   }      
+        pop();       
+      }                 
+    }      
  }
 
  function linearGradient(sX, sY, eX, eY, colorS, colorE){
@@ -120,17 +132,15 @@
   gradient.addColorStop(0, colorS);
   gradient.addColorStop(1, colorE);
   drawingContext.fillStyle = gradient;
-  // drawingContext.strokeStyle = gradient;
 }
  
  function mousePressed() {
-   actRandomSeed = random(100000);
+   initSketch();
  }
  
  function keyTyped() {
    if (key == 's' || key == 'S'){
     saveCanvas('gradient-sine', 'png');
-    console.log('ua');
    } 
 
    if (key == 'r' || key == 'R') {

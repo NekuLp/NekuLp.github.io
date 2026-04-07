@@ -8,6 +8,35 @@
     <link rel="icon" href="./img/favicon2.png" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     
+    <style>
+        .sketch-description {
+            font-size: 1.4rem; /* Adjusted for their html { font-size: 62.5% } base */
+            line-height: 1.5;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Datatype', sans-serif;
+            text-align: left;
+        }
+        .tooltip-divider {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+        }
+        .tooltip-title {
+            font-family: 'Rubik Mono One', sans-serif;
+            font-size: 1.2rem;
+            color: #d90080; /* Neon pink matching their content */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(217, 0, 128, 0.4);
+            text-align: left;
+        }
+        .controls-list {
+            margin-top: 8px;
+        }
+    </style>
+    
     <title>Pashekun's p5 vault - Generative</title>
 </head>
 <body class="theme-dark-sea">
@@ -159,6 +188,7 @@
              { 
                 id: 'sketches/3dgrid/sketch.js', 
                 name: '3D Grid (Shaders)',
+                description: 'Un grid 3D que se puede rotar con el mouse. La generación del grid esta basada en como se crean los identicons de perfiles como github',
                 controls: [
                     { icon: '🖱️', text: 'Orbit control para rotar' },
                     { icon: 'R', text: 'Reiniciar sketch 🔄' }
@@ -172,7 +202,65 @@
                     { icon: '🔊', text: '¡Tiene sonido! Dale clic para generar una melodía' }
                 ]
             },
-            { id: 'sketches/melody_randomizer_vis_input.js', name: 'Melody Visualizer (Input)' }
+            { id: 'sketches/melody_randomizer_vis_input.js', name: 'Melody Visualizer (Input)' },
+            { id: 'sketches/genuary-2024-1-particles.js', 
+            name: 'Genuary 2024 - Particles, lots of them.' ,
+            controls: [
+                { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                { icon: 'S', text: 'Guardar PNG' }
+            ]
+            },
+            { id: 'sketches/genuary-2024-3-droste.js', 
+            name: 'Genuary 2024 - Droste Effect' ,
+            controls: [
+                { icon: '⬅️/➡️', text: 'Pausa / Play' },
+                { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                { icon: 'S', text: 'Guardar PNG' }
+            ]
+            },
+            { id: 'sketches/genuary-2024-4-pixels.js', 
+            name: 'Genuary 2024 - Pixels' ,
+            controls: [                                
+                { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                { icon: 'S', text: 'Guardar PNG' }
+            ]
+            },
+            // { id: 'sketches/ojos/ojos.js', 
+            // name: 'Ojos' ,
+            // controls: [                
+            //     { icon: 'R', text: 'Reiniciar sketch 🔄' },
+            //     { icon: 'S', text: 'Guardar PNG' }
+            // ]
+            // },
+            { id: 'sketches/flow-agents/flow-agents.js', 
+            name: 'Flow Agents' ,
+            controls: [                                
+            ]
+            },
+            { id: 'sketches/test-unnamed.js', 
+            name: 'Test Unnamed' ,
+            description: 'Gusanitos que parecen doodles de dibujo a mano',
+            controls: [          
+                { icon: 'R o click', text: 'Reiniciar sketch 🔄' },
+                { icon: 'S', text: 'Guardar PNG' }                      
+            ]
+            },
+            { id: 'sketches/oil-paint-2.js', 
+            name: 'Oil Paint 2' ,
+            description: 'Genuary 2025 - Oil Paint',
+            controls: [          
+                { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                { icon: 'S', text: 'Guardar PNG' }                      
+            ]
+            },
+            { id: 'sketches/palette-cycling-lava.js', 
+            name: 'Palette Cycling Lava' ,
+            description: 'Usando técnicas este sketch simula el palette cycling que se usaba en los 90s para simular lava en videojuegos de supernintendo y similares. Agentes aparecen aleatoriamente, tanto como su forma tambien es aleatoria lo que hace simular un poco como crateres.',
+            controls: [          
+                { icon: 'R', text: 'Reiniciar sketch 🔄' },
+                { icon: 'S', text: 'Guardar PNG' }                      
+            ]
+            }
         ];
 
         let currentIndex = 0;
@@ -281,25 +369,36 @@
                 loaderPercent.innerText = '100%';
                 loaderFill.style.width = '100%';
                 
-                // Populate tooltip if controls exist
+                // Populate tooltip if content exists
+                let tooltipContent = '';
+                
+                if (currentSketch.description) {
+                    tooltipContent += `<h4 class="tooltip-title">Descripción</h4>`;
+                    tooltipContent += `<p class="sketch-description">${currentSketch.description}</p>`;
+                    if (currentSketch.controls && currentSketch.controls.length > 0) {
+                        tooltipContent += '<hr class="tooltip-divider">';
+                    }
+                }
+
                 if (currentSketch.controls && currentSketch.controls.length > 0) {
-                    tooltipContainer.innerHTML = '<ul class="controls-list">' + currentSketch.controls.map(c => 
+                    tooltipContent += `<h4 class="tooltip-title">Controles</h4>`;
+                    tooltipContent += '<ul class="controls-list">' + currentSketch.controls.map(c => 
                         `<li class="control-item">
                             <span class="control-icon">${c.icon}</span>
                             <span class="control-text">${c.text}</span>
                         </li>`
                     ).join('') + '</ul>';
-                } else {
-                    tooltipContainer.innerHTML = '';
                 }
+
+                tooltipContainer.innerHTML = tooltipContent;
                 
                 setTimeout(() => {
                     loader.classList.add('fade-hidden');
                     titleEl.classList.remove('fade-hidden');
-                    if (currentSketch.controls && currentSketch.controls.length > 0) {
+                    if (currentSketch.description || (currentSketch.controls && currentSketch.controls.length > 0)) {
                         infoIcon.classList.remove('fade-hidden');
                         
-                        // Auto-show tooltip for 3 seconds
+                        // Auto-show tooltip for 2 seconds
                         tooltipContainer.classList.add('auto-show');
                         setTimeout(() => {
                             tooltipContainer.classList.remove('auto-show');
