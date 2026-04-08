@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" media="screen"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="./img/favicon2.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <title>Pashekun's p5 vault - About</title>    
+</head>
+<body class="theme-dark-sea is-home">
+    <nav class="neon-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo glow-text">Pashekun</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link glow-text">Inicio</a></li>
+                <li><a href="generative.html" class="nav-link glow-text">Generative</a></li>
+                <li><a href="about.html" class="nav-link glow-text active">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container pb-5 mt-4 mb-5 home">
+        <div class="row align-items-center my-5 mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h1 class="glow-text mb-4">Un poco más de mí</h1>
+                <p class="mb-3">Todavianosequeponeraqui:)</p>                
+            </div>
+            <div class="col-lg-6 d-flex justify-content-center align-items-center" style="min-height: 400px; padding: 20px;">
+                <!-- Wrapper explicitly sized to exactly match the 2x2 grid of open windows -->
+                <div id="webamp-app" style="position: relative; width: 550px; height: 232px;">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mb-5">
+            <div class="col-12 text-center mt-5">
+                <h2 class="glow-text h3 border-top pt-5">Fotos y Memorias</h2>
+                <p class="mb-4">Próximamente...</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import Webamp from "https://unpkg.com/webamp@^2/butterchurn";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const app = document.getElementById('webamp-app');
+            
+            // Define available skins (hosted on Archive.org to allow CORS)
+            const availableSkins = [
+                {
+                    url: "./skins/Zelda-Amp.wsz",
+                    name: "Zelda Amp",
+                },
+                {
+                    url: "./skins/Green-Dimension-V2.wsz",
+                    name: "Green Dimension V2",
+                },
+                {
+                    url: "./skins/Garfield.wsz",
+                    name: "Garfield",
+                },
+                {
+                    url: "./skins/Doritos_NachoAmp.wsz",
+                    name: "Doritos NachoAmp",
+                },
+                {
+                    url: "./skins/ascii.wsz",
+                    name: "ASCII",
+                },
+                {
+                    url: "./skins/Microchip_2.wsz",
+                    name: "Microchip 2",
+                },
+                {
+                    url: "./skins/weezer2.wsz",
+                    name: "Weezer",
+                },
+                {
+                    url: "./skins/slim_shady_.wsz",
+                    name: "Slim Shady",
+                },
+                {
+                    url: "./skins/The_True_Deano_Amp.wsz",
+                    name: "The True Deano Amp",
+                },
+                {
+                    url: "./skins/Castlevania4.wsz",
+                    name: "Castlevania4",
+                },
+                {
+                    url: "./skins/STRIFE_v2.wsz",
+                    name: "STRIFE_v2",
+                },
+                {
+                    url: "./skins/Dracula_X.wsz",
+                    name: "Dracula_X",
+                },
+                {
+                    url: "./skins/Stuart_Little_amp_1.2.wsz",
+                    name: "Stuart Little",
+                },
+                {
+                    url: "./skins/Leon_and_Claire.wsz",
+                    name: "Leon and Claire",
+                },
+                {
+                    url: "./skins/Metroid_Battle.wsz",
+                    name: "Metroid Battle",
+                },
+                {
+                    url: "./skins/TetAtck.wsz",
+                    name: "Tetris Attack",
+                },
+                {
+                    url: "./skins/xskin01.wsz",
+                    name: "Megaman X",
+                },
+                {
+                    url: "./skins/SerialMusicLain.wsz",
+                    name: "Serial Music Lain",
+                },
+            ];
+
+            // Select a random skin to load initially
+            const randomSkin = availableSkins[Math.floor(Math.random() * availableSkins.length)];
+
+            const webamp = new Webamp({
+                availableSkins: availableSkins,
+                initialSkin: {
+                    url: randomSkin.url
+                },
+                initialTracks: [
+                    {
+                        metaData: {
+                            artist: "Desconocido",
+                            title: "Cumzone"
+                        },
+                        // Fixed 403 error by using the specific commit hash blob version.
+                        url: "./mp3/cumzone.wav",
+                        duration: 85.1 // Duration helps UI render correctly initially
+                    },
+                    {
+                        metaData: {
+                            artist: "Erminio solista",
+                            title: "como el shinji bounce 1"
+                        },
+                        // Fixed 403 error by using the specific commit hash blob version.
+                        url: "./mp3/Erminio Solista - como el shinji.mp3",
+                        duration: 403
+                    },
+                    {
+                        metaData: {
+                            artist: "Pashekun",
+                            title: "Nocierto"
+                        },
+                        // Fixed 403 error by using the specific commit hash blob version.
+                        url: "./mp3/nocierto.mp3",
+                        duration: 174.322286 // Duration helps UI render correctly initially
+                    },
+                    {
+                        metaData: {
+                            artist: "Pashekun",
+                            title: "Solo yo"
+                        },
+                        // Fixed 403 error by using the specific commit hash blob version.
+                        url: "./mp3/solo yo.wav",
+                        duration: 150.322286 // Duration helps UI render correctly initially
+                    }
+                ],
+                // Open visualizer on load
+                __butterchurnOptions: {
+                    butterchurnOpen: true
+                },
+                // Lock windows in a grid (Main + Playlist left, Milkdrop right) using v2 API
+                windowLayout: {
+                    main: { position: { top: 0, left: 0 }, closed: false },
+                    playlist: { position: { top: 116, left: 0 }, size: { extraHeight: 0, extraWidth: 0 }, closed: false },
+                    milkdrop: { position: { top: 0, left: 275 }, size: { extraHeight: 4, extraWidth: 0 }, closed: false }
+                }
+            });
+            
+            webamp.renderWhenReady(app).then(() => {
+                console.log('Webamp loaded successfully with skin:', randomSkin.name);
+            });
+        });
+    </script>
+</body>
+</html>
