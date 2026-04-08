@@ -11,6 +11,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
     <title>Pashekun's p5 vault - About</title>    
 </head>
+
+
 <body class="theme-dark-sea is-home">
     <nav class="neon-navbar">
         <div class="nav-container">
@@ -40,6 +42,13 @@
             <div class="col-12 text-center mt-5">
                 <h2 class="glow-text h3 border-top pt-5">Fotos y Memorias</h2>
                 <p class="mb-4">Próximamente...</p>
+                
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="mb-4">Instagram Gallery</h3>
+                <div id="ig-gallery" class="row g-4"></div>
             </div>
         </div>
     </main>
@@ -190,5 +199,58 @@
             });
         });
     </script>
+
+    <script>
+    const posts = [
+        { url: "https://www.instagram.com/p/DBXa1E7uQBZ/?img_index=3", img: "./img/ig/1.webp" },
+        { url: "https://www.instagram.com/p/DBXa1E7uQBZ/?img_index=13", img: "./img/ig/2.webp" },
+        { url: "https://www.instagram.com/p/DBXNOjvO7Xb/?img_index=11", img: "./img/ig/3.jpg" },
+        { url: "https://www.instagram.com/p/DBXNOjvO7Xb/?img_index=13", img: "./img/ig/4.jpg" },        
+        { url: "https://www.instagram.com/p/CuM6eJJOb1U/?img_index=2", img: "./img/ig/5.jpg" },
+        { url: "https://www.instagram.com/p/CrR_kIksAH5/?img_index=2", img: "./img/ig/6.jpg" },
+        { url: "https://www.instagram.com/p/CgXtRM3OaSS/?img_index=2", img: "./img/ig/7.webp" },
+        { url: "https://www.instagram.com/p/C1vuxvUN1nF/?img_index=1", img: "./img/ig/8.webp" },
+        { url: "https://www.instagram.com/p/C2JisHtOGGW/?img_index=1", img: "./img/ig/9.webp" },        
+        { url: "https://www.instagram.com/p/CuYxs6UNtda/?img_index=1", img: "./img/ig/10.webp" },
+        { url: "https://www.instagram.com/p/B4GZPUShmun/?img_index=1", img: "./img/ig/11.jpg" },
+        { url: "https://www.instagram.com/p/CoNU0x7L3vZ/", img: "./img/ig/12.webp" }
+    ];
+
+    const gallery = document.getElementById("ig-gallery");
+    
+    // Quitar las clases de bootstrap para usar nuestro propio CSS Grid irregular
+    gallery.className = "";
+
+    const shapes = ['shape-normal', 'shape-tall', 'shape-wide', 'shape-large'];
+
+    posts.forEach((post, i) => {
+        const item = document.createElement("div");
+        // Asignamos una clase de forma irregular basada en el índice para que sea consistente
+        const shapeClass = shapes[i % shapes.length]; 
+        item.className = `ig-grid-item ${shapeClass}`;
+        item.style.transitionDelay = `${(i % 5) * 0.1}s`;
+
+        item.innerHTML = `
+            <a href="${post.url}" target="_blank" rel="noopener noreferrer" class="ig-link">
+                <!-- Usamos onerror para cargar un placeholder oscuro temporal si la imagen final aún no se agrega a la carpeta img/ig/ -->
+                <img src="${post.img}" alt="Instagram post" loading="lazy" class="ig-image" 
+                     onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' preserveAspectRatio=\\'none\\' viewBox=\\'0 0 400 500\\'><rect fill=\\'%23112b32\\' width=\\'400\\' height=\\'500\\'/><text fill=\\'%232ce574\\' font-size=\\'18\\' font-family=\\'monospace\\' x=\\'50%\\' y=\\'50%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\'>Falta img/ig/${i+1}.jpg</text></svg>'" />
+            </a>
+        `;
+        gallery.appendChild(item);
+    });
+
+    // Animación de aparición aleatoria / escalonada tipo lazy load
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.ig-grid-item').forEach(el => observer.observe(el));
+    </script>   
 </body>
 </html>
