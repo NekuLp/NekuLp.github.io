@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="icon" href="./img/favicon2.png" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
     
     <style>
         .sketch-description {
@@ -44,9 +45,15 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo glow-text hover">Pashekun</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link glow-text">Inicio</a></li>
-                <li><a href="generative.html" class="nav-link glow-text active">Generative</a></li>
-                <li><a href="about.html" class="nav-link glow-text">About</a></li>
+                <li><a href="index.html" class="nav-link glow-text" data-i18n="nav.home">Inicio</a></li>
+                <li><a href="generative.html" class="nav-link glow-text active" data-i18n="nav.generative">Generative</a></li>
+                <li><a href="about.html" class="nav-link glow-text" data-i18n="nav.about">About</a></li>
+                <li class="lang-picker">
+                    <select id="lang-switch" class="lang-select">
+                        <option value="es">ESP</option>
+                        <option value="en">ENG</option>
+                    </select>
+                </li>
             </ul>
         </div>
     </nav>
@@ -86,9 +93,9 @@
 
         <section class="sketch-list-section" id="sketch-drawer">
             <div class="toggle-controls-btn glow-text" id="toggle-drawer-btn" onclick="toggleDrawer()">
-                <span id="drawer-icon">&#9650;</span> Sketches
+                <span id="drawer-icon">&#9650;</span> <span data-i18n="gen.sketches">Sketches</span>
             </div>
-            <h2 class="glow-text sketch-list-title">Explore Gallery</h2>
+            <h2 class="glow-text sketch-list-title" data-i18n="gen.explore">Explore Gallery</h2>
             <ul class="sketch-list" id="sketch-list-ui">
                 <!-- Dynamically generated list items -->
             </ul>
@@ -97,82 +104,67 @@
     
     <script>
         const sketches = [
-            // { 
-            //     id: 'sketches/piramides-rojas.js', 
-            //     name: 'Pirámides Rojas',
-            //     controls: [
-            //         { icon: '🖱️', text: 'Mueve el ratón para cambiar direcciones' },
-            //         { icon: '🖱️(Click)', text: 'Genera nueva seed 🔄' }
-            //     ]
-            // },
             { 
                 id: 'sketches/piramides-rojas-2.js', 
                 name: 'Pirámides Rojas (Alt)',
+                nameKey: 'sketch.name.piramides',
                 controls: [
-                    { icon: '🖱️(Click)', text: 'Genera nueva seed 🔄' },                    
+                    { icon: '🖱️(Click)', text: 'Genera nueva seed 🔄', textKey: 'ctrl.seed' },                    
                 ]
             },
-           
-            // { 
-            //     id: 'sketches/oscilaciones.js', 
-            //     name: 'Oscilaciones',
-            //     controls: [
-            //         { icon: '🖱️', text: 'Interactúa con la forma' }
-            //     ]
-            // },
-            // { id: 'sketches/oscilaciones2.js', name: 'Oscilaciones (Alt)' },
             { 
                 id: 'sketches/BattleBackgrounds.js', 
                 name: 'Battle Backgrounds', 
                 controls: [
-                    { icon: '🖱️(Click) o R', text: 'Genera nueva seed 🔄' },                    
+                    { icon: '🖱️(Click) o R', text: 'Genera nueva seed 🔄', textKey: 'ctrl.seed' },                    
                 ]
             },
             { id: 'sketches/gises.js', 
                 name: 'Gises',
+                nameKey: 'sketch.name.gises',
                 controls: [
-                    { icon: '🖱️(Click)', text: 'Crea un agente random' },
-                    { icon: 'S', text: 'Guardar PNG' },
-                    { icon: 'R', text: 'Reiniciar sketch 🔄' }
+                    { icon: '🖱️(Click)', text: 'Crea un agente random', textKey: 'ctrl.agent' },
+                    { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' }
                 ]
              },
             { 
                 id: 'sketches/oscilacion-mak.js', 
                 name: 'Oscilación MAK',
+                nameKey: 'sketch.name.oscilacion',
                 controls: [
-                    { icon: '1/2', text: 'FreqX +/-' },
-                    { icon: '3/4', text: 'FreqY +/-' },
-                    { icon: '7/8', text: 'ModFreqX +/-' },
-                    { icon: '9/0', text: 'ModFreqY +/-' },
-                    { icon: '⬅️/➡️', text: 'Cambia Phi' },
-                    { icon: 'S', text: 'Guardar PNG' }
+                    { icon: '1/2', text: 'FreqX +/-', textKey: 'ctrl.freqx' },
+                    { icon: '3/4', text: 'FreqY +/-', textKey: 'ctrl.freqy' },
+                    { icon: '7/8', text: 'ModFreqX +/-', textKey: 'ctrl.modfreqx' },
+                    { icon: '9/0', text: 'ModFreqY +/-', textKey: 'ctrl.modfreqy' },
+                    { icon: '⬅️/➡️', text: 'Cambia Phi', textKey: 'ctrl.phi' },
+                    { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
                 ]
             },
             { 
                 id: 'sketches/portal_gradient.js', 
                 name: 'Portal Gradient',
                 controls: [
-                    { icon: '⬅️/➡️', text: 'Pausa / Play' },
-                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                    { icon: 'S', text: 'Guardar PNG' }
+                    { icon: '⬅️/➡️', text: 'Pausa / Play', textKey: 'ctrl.pauseplay' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                    { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
                 ]
             },
             { 
                 id: 'sketches/portal_colores.js', 
                 name: 'Portal Colores',
                 controls: [
-                    { icon: '⬅️/➡️', text: 'Pausa / Play' },
-                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                    { icon: 'S', text: 'Guardar PNG' }
+                    { icon: '⬅️/➡️', text: 'Pausa / Play', textKey: 'ctrl.pauseplay' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                    { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
                 ]
             },
-            // { id: 'sketches/colorgrid.js', name: 'Breathing Grid' },
             { 
                 id: 'sketches/gradient-sine.js', 
                 name: 'Gradient Sine',
                 controls: [
-                    { icon: 'R o Click', text: 'Reiniciar sketch 🔄' },
-                    { icon: 'S', text: 'Guardar PNG' }
+                    { icon: 'R o Click', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                    { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
                 ]
             },
             
@@ -182,18 +174,19 @@
                 id: 'sketches/emsjaen.js', 
                 name: 'Emsjaen',
                 controls: [
-                    { icon: '⬅️/➡️', text: 'Pausa / Play' },
-                    { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                    { icon: 'S', text: 'Guardar PNG' }
+                    { icon: '⬅️/➡️', text: 'Pausa / Play', textKey: 'ctrl.pauseplay' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                    { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
                 ]
             },
              { 
                 id: 'sketches/3dgrid/sketch.js', 
                 name: '3D Grid (Shaders)',
                 description: 'Un grid 3D que se puede rotar con el mouse. La generación del grid esta basada en como se crean los identicons de perfiles como github',
+                descKey: 'sketch.desc.3dgrid',
                 controls: [
-                    { icon: '🖱️', text: 'Orbit control para rotar' },
-                    { icon: 'R', text: 'Reiniciar sketch 🔄' }
+                    { icon: '🖱️', text: 'Orbit control para rotar', textKey: 'ctrl.orbit' },
+                    { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' }
                 ]
             },
             
@@ -201,46 +194,39 @@
                 id: 'sketches/melody_randomizer_visualizer.js', 
                 name: 'Melody Randomizer',
                 controls: [
-                    { icon: '🔊', text: '¡Tiene sonido! Dale clic para generar una melodía' }
+                    { icon: '🔊', text: '¡Tiene sonido! Dale clic para generar una melodía', textKey: 'ctrl.audio' }
                 ]
             },
             { id: 'sketches/melody_randomizer_vis_input.js', 
             description: 'Visualiza el audio que entra por el microfono',
+            descKey: 'sketch.desc.mic',
             controls: [
-                { icon: '🎤', text: 'Mandar audio por el microfono' },
-
+                { icon: '🎤', text: 'Mandar audio por el microfono', textKey: 'ctrl.mic' },
             ],
             name: 'Melody Visualizer (Input)' 
             },
             { id: 'sketches/genuary-2024-1-particles.js', 
             name: 'Genuary 2024 - Particles, lots of them.' ,
             controls: [
-                { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                { icon: 'S', text: 'Guardar PNG' }
+                { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
             ]
             },
             { id: 'sketches/genuary-2024-3-droste.js', 
             name: 'Genuary 2024 - Droste Effect' ,
             controls: [
-                { icon: '⬅️/➡️', text: 'Pausa / Play' },
-                { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                { icon: 'S', text: 'Guardar PNG' }
+                { icon: '⬅️/➡️', text: 'Pausa / Play', textKey: 'ctrl.pauseplay' },
+                { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
             ]
             },
             { id: 'sketches/genuary-2024-4-pixels.js', 
             name: 'Genuary 2024 - Pixels' ,
             controls: [                                
-                { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                { icon: 'S', text: 'Guardar PNG' }
+                { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }
             ]
             },
-            // { id: 'sketches/ojos/ojos.js', 
-            // name: 'Ojos' ,
-            // controls: [                
-            //     { icon: 'R', text: 'Reiniciar sketch 🔄' },
-            //     { icon: 'S', text: 'Guardar PNG' }
-            // ]
-            // },
             { id: 'sketches/flow-agents/flow-agents.js', 
             name: 'Flow Agents' ,
             controls: [                                
@@ -249,25 +235,27 @@
             { id: 'sketches/test-unnamed.js', 
             name: 'Test Unnamed' ,
             description: 'Gusanitos que parecen doodles de dibujo a mano',
+            descKey: 'sketch.desc.gusanitos',
             controls: [          
-                { icon: 'R o click', text: 'Reiniciar sketch 🔄' },
-                { icon: 'S', text: 'Guardar PNG' }                      
+                { icon: 'R o click', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }                      
             ]
             },
             { id: 'sketches/oil-paint-2.js', 
             name: 'Oil Paint 2' ,
             description: 'Genuary 2025 - Oil Paint',
             controls: [          
-                { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                { icon: 'S', text: 'Guardar PNG' }                      
+                { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }                      
             ]
             },
             { id: 'sketches/palette-cycling-lava.js', 
             name: 'Palette Cycling Lava' ,
             description: 'Usando técnicas este sketch simula el palette cycling que se usaba en los 90s para simular lava en videojuegos de supernintendo y similares. Agentes aparecen aleatoriamente, tanto como su forma tambien es aleatoria lo que hace simular un poco como crateres.',
+            descKey: 'sketch.desc.lava',
             controls: [          
-                { icon: 'R', text: 'Reiniciar sketch 🔄' },
-                { icon: 'S', text: 'Guardar PNG' }                      
+                { icon: 'R', text: 'Reiniciar sketch 🔄', textKey: 'ctrl.restart' },
+                { icon: 'S', text: 'Guardar PNG', textKey: 'ctrl.save' }                      
             ]
             }
         ];
@@ -295,15 +283,35 @@
             }
         }
 
+        // Helper string logic
+        const getT = (key, fallback) => {
+            if (!key) return fallback;
+            return window.t && window.t(key) !== key ? window.t(key) : fallback;
+        };
+
         function initList() {
+            listUI.innerHTML = ''; // Limpiar lista
             sketches.forEach((s, i) => {
                 const li = document.createElement('li');
                 li.className = 'sketch-item glow-text';
-                li.innerText = s.name;
+                li.innerText = getT(s.nameKey, s.name);
                 li.onclick = () => loadSketch(i, i > currentIndex ? 1 : -1);
                 listUI.appendChild(li);
             });
         }
+        
+        window.addEventListener('languageChanged', () => {
+            initList();
+            updateListHighlight();
+            const currentSketch = sketches[currentIndex];
+            titleEl.innerText = getT(currentSketch.nameKey, currentSketch.name);
+            
+            // Cierra el tooltip temporalmente si cambian de idioma para que no haya textos colgados o recargarlo
+            if (infoIcon.classList.contains('auto-show') || !infoIcon.classList.contains('fade-hidden')) {
+               // Renderizar tooltip de nuevo dinámicamente:
+               renderTooltip(currentSketch);
+            }
+        });
 
         function updateListHighlight() {
             Array.from(listUI.children).forEach((li, i) => {
@@ -365,6 +373,39 @@
             }, 600); // match CSS transition duration
         }
 
+        function renderTooltip(currentSketch) {
+            let tooltipContent = '';
+            const currentDesc = getT(currentSketch.descKey, currentSketch.description);
+
+            if (currentDesc) {
+                const descTitle = window.t ? window.t('gen.desc') : 'Descripción';
+                tooltipContent += `<h4 class="tooltip-title" data-i18n="gen.desc">${descTitle}</h4>`;
+                tooltipContent += `<p class="sketch-description">${currentDesc}</p>`;
+                if (currentSketch.controls && currentSketch.controls.length > 0) {
+                    tooltipContent += '<hr class="tooltip-divider">';
+                }
+            }
+
+            if (currentSketch.controls && currentSketch.controls.length > 0) {
+                const controlsTitle = window.t ? window.t('gen.controls') : 'Controles';
+                tooltipContent += `<h4 class="tooltip-title" data-i18n="gen.controls">${controlsTitle}</h4>`;
+                tooltipContent += '<ul class="controls-list">' + currentSketch.controls.map(c => 
+                    `<li class="control-item">
+                        <span class="control-icon">${c.icon}</span>
+                        <span class="control-text">${getT(c.textKey, c.text)}</span>
+                    </li>`
+                ).join('') + '</ul>';
+            }
+
+            tooltipContainer.innerHTML = tooltipContent;
+            
+            if (currentDesc || (currentSketch.controls && currentSketch.controls.length > 0)) {
+                infoIcon.classList.remove('fade-hidden');
+            } else {
+                infoIcon.classList.add('fade-hidden');
+            }
+        }
+
         // Listen for postMessage from iframe
         window.addEventListener('message', (event) => {
             if (!event.data) return;
@@ -374,39 +415,18 @@
                 loaderFill.style.width = `${event.data.value}%`;
             } else if (event.data.type === 'loaded') {
                 const currentSketch = sketches[currentIndex];
-                titleEl.innerText = currentSketch.name;
+                titleEl.innerText = getT(currentSketch.nameKey, currentSketch.name);
                 loaderPercent.innerText = '100%';
                 loaderFill.style.width = '100%';
                 
-                // Populate tooltip if content exists
-                let tooltipContent = '';
-                
-                if (currentSketch.description) {
-                    tooltipContent += `<h4 class="tooltip-title">Descripción</h4>`;
-                    tooltipContent += `<p class="sketch-description">${currentSketch.description}</p>`;
-                    if (currentSketch.controls && currentSketch.controls.length > 0) {
-                        tooltipContent += '<hr class="tooltip-divider">';
-                    }
-                }
-
-                if (currentSketch.controls && currentSketch.controls.length > 0) {
-                    tooltipContent += `<h4 class="tooltip-title">Controles</h4>`;
-                    tooltipContent += '<ul class="controls-list">' + currentSketch.controls.map(c => 
-                        `<li class="control-item">
-                            <span class="control-icon">${c.icon}</span>
-                            <span class="control-text">${c.text}</span>
-                        </li>`
-                    ).join('') + '</ul>';
-                }
-
-                tooltipContainer.innerHTML = tooltipContent;
+                renderTooltip(currentSketch);
                 
                 setTimeout(() => {
                     loader.classList.add('fade-hidden');
                     titleEl.classList.remove('fade-hidden');
-                    if (currentSketch.description || (currentSketch.controls && currentSketch.controls.length > 0)) {
-                        infoIcon.classList.remove('fade-hidden');
-                        
+                    
+                    const currentDesc = getT(currentSketch.descKey, currentSketch.description);
+                    if (currentDesc || (currentSketch.controls && currentSketch.controls.length > 0)) {
                         // Auto-show tooltip for 2 seconds
                         tooltipContainer.classList.add('auto-show');
                         setTimeout(() => {
@@ -449,7 +469,7 @@
         
         // Setup initial without transition
         loader.classList.remove('fade-hidden');
-        titleEl.innerText = sketches[currentIndex].name;
+        titleEl.innerText = getT(sketches[currentIndex].nameKey, sketches[currentIndex].name);
         iframe.src = `sketch-runner.html?sketch=${sketches[currentIndex].id}`;
         updateListHighlight();
 
@@ -482,5 +502,8 @@
         }, {passive: true});
 
     </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
+    <script type="module" src="js/i18n.js"></script>
 </body>
 </html>

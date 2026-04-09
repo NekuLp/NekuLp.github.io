@@ -1,0 +1,97 @@
+/* Estilos personalizados para Selectize integrados al Navbar */
+
+.lang-picker {
+  margin-left: auto;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+/* Modificadores sobre selectize.default.css */
+
+.lang-picker .selectize-control {
+  font-family: 'Gabarito', monospace, sans-serif;
+  letter-spacing: 1px;
+
+  @extend .nav-link;
+  
+}
+
+.lang-picker .selectize-input {
+  background: transparent !important;
+  border: 1px solid transparent !important; /* transparent border prevents jump */
+  box-shadow: none !important;
+  color: inherit !important;
+  font-size: 1.1rem;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer;
+  height: 24px !important; /* Fija la caja para no saltar */
+  min-height: 24px !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+  margin-top: -1px;
+}
+
+.lang-picker .selectize-input.has-items > .item {  
+  @extend .glow-text;
+}
+
+.lang-picker .selectize-input:hover.has-items > .item,
+.lang-picker .selectize-input.dropdown-active.has-items > .item {
+  color: #2ce574;
+  text-shadow: 0 0 5px rgba(44, 229, 116, 0.5), 0 0 15px rgba(44, 229, 116, 0.3);
+}
+
+.lang-picker .selectize-control.single .selectize-input:after {
+  content: '▼';
+  font-size: 0.6rem;
+  border: none !important;
+  position: relative !important;
+  right: auto !important;
+  top: auto !important;
+  margin-top: 0 !important;
+  margin-left: 8px;
+  color: inherit;
+  transition: transform 0.3s ease;
+  width: auto !important;
+  height: auto !important;
+  display: inline-block;
+}
+
+.lang-picker .selectize-control.single .selectize-input.dropdown-active:after {
+  transform: rotate(180deg);
+  border: none !important;
+}
+
+.lang-picker .selectize-dropdown {
+  background: #0d2126 !important; /* Dark Sea */
+  border: 1px solid rgba(44, 229, 116, 0.5) !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+  padding: 4px 0 !important;
+  margin-top: 10px !important;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.lang-picker .selectize-dropdown .option {
+  color: #fff !important;
+  font-family: 'Datatype', monospace, sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 8px 12px !important;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-picker .selectize-dropdown .option:hover,
+.lang-picker .selectize-dropdown .option.active {
+  background: rgba(44, 229, 116, 0.15) !important;
+  color: #2ce574 !important;
+  text-shadow: 0 0 5px rgba(44, 229, 116, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

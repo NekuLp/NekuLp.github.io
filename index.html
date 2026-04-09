@@ -9,6 +9,7 @@
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="./img/favicon2.png" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"/>
     <title>Pashekun's p5 vault - Inicio</title>
 </head>
 <body class="theme-dark-sea is-home">
@@ -16,9 +17,15 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo glow-text">Pashekun</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link glow-text active">Inicio</a></li>
-                <li><a href="generative.html" class="nav-link glow-text">Generative</a></li>
-                <li><a href="about.html" class="nav-link glow-text">About</a></li>
+                <li><a href="index.html" class="nav-link glow-text active" data-i18n="nav.home">Inicio</a></li>
+                <li><a href="generative.html" class="nav-link glow-text" data-i18n="nav.generative">Generative</a></li>
+                <li><a href="about.html" class="nav-link glow-text" data-i18n="nav.about">About</a></li>
+                <li class="lang-picker">
+                    <select id="lang-switch" class="lang-select">
+                        <option value="es">ESP</option>
+                        <option value="en">ENG</option>
+                    </select>
+                </li>
             </ul>
         </div>
     </nav>
@@ -31,9 +38,9 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <h1 class="glow-text mt-5 mt-lg-0 mb-4">Quien soy</h1>
-                <p class="lead mb-4" style="color: #d90080; font-weight: 500;">Ingeniero en sistemas, Desarrollador fullstack y entusiasta del arte generativo</p>
-                <p class="mb-3">De manera paralela, desarrollo mi interés por el arte generativo como un espacio para experimentar con código y creatividad. Me gusta trabajar en proyectos donde la tecnología y el diseño se cruzan para crear experiencias únicas.</p>                
+                <h1 class="glow-text mt-5 mt-lg-0 mb-4" data-i18n="index.title">Quien soy</h1>
+                <p class="lead mb-4" style="color: #d90080; font-weight: 500;" data-i18n="index.lead">Ingeniero en sistemas, Desarrollador fullstack y entusiasta del arte generativo</p>
+                <p class="mb-3" data-i18n="index.p1">De manera paralela, desarrollo mi interés por el arte generativo como un espacio para experimentar con código y creatividad. Me gusta trabajar en proyectos donde la tecnología y el diseño se cruzan para crear experiencias únicas.</p>                
                 
                 <ul class="social-links">
                     <li class="social-links__item">
@@ -62,12 +69,12 @@
 
         <div class="row align-items-center justify-content-between flex-column-reverse flex-lg-row pt-5">
             <div class="col-lg-6">
-                <h2 class="glow-text h3 mt-5 mt-lg-0 mb-4">Sobre Mi Trabajo</h2>
-                <p class="mb-3">Combino desarrollo frontend y backend para construir aplicaciones completas, desde la arquitectura hasta los detalles visuales. Disfruto especialmente trabajar en interfaces dinámicas, animaciones y experiencias interactivas.</p>
-                <p>En el lado del arte generativo, exploro la intersección entre código, arte y diseño. Me interesa crear piezas visuales que exploren patrones, sistemas y procesos, utilizando herramientas como p5.js para generar composiciones únicas y experimentales.</p>
+                <h2 class="glow-text h3 mt-5 mt-lg-0 mb-4" data-i18n="index.h2">Sobre Mi Trabajo</h2>
+                <p class="mb-3" data-i18n="index.p2">Combino desarrollo frontend y backend para construir aplicaciones completas, desde la arquitectura hasta los detalles visuales. Disfruto especialmente trabajar en interfaces dinámicas, animaciones y experiencias interactivas.</p>
+                <p data-i18n="index.p3">En el lado del arte generativo, exploro la intersección entre código, arte y diseño. Me interesa crear piezas visuales que exploren patrones, sistemas y procesos, utilizando herramientas como p5.js para generar composiciones únicas y experimentales.</p>
                 <a href="generative.html" class="cta-gallery" id="cta-explore-gallery">
                     <span class="cta-gallery__icon">✦</span>
-                    Explorar galería
+                    <span data-i18n="index.cta">Explorar galería</span>
                     <span class="cta-gallery__arrow">→</span>
                 </a>
             </div>
@@ -78,5 +85,9 @@
             </div>
         </div>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
+    <script type="module" src="js/i18n.js"></script>
 </body>
 </html>
