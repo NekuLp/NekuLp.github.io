@@ -12080,7 +12080,7 @@ p {
 /* Estilos personalizados para Selectize integrados al Navbar */
 .lang-picker {
   margin-left: auto;
-  min-width: 100px;
+  min-width: 20px;
   display: flex;
   align-items: center;
 }
