@@ -12172,5 +12172,9 @@ p {
     transform: translateY(0);
   }
 }
+.selectize-dropdown .selected {
+  background-color: transparent !important;
+  color: #fff !important;
+}
 
 /*# sourceMappingURL=style.css.map */
