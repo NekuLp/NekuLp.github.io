@@ -41,22 +41,7 @@
     <title>Pashekun's p5 vault - Generative</title>
 </head>
 <body class="theme-dark-sea">
-    <nav class="neon-navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo glow-text hover">Pashekun</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link glow-text" data-i18n="nav.home">Inicio</a></li>
-                <li><a href="generative.html" class="nav-link glow-text active" data-i18n="nav.generative">Generative</a></li>
-                <li><a href="about.html" class="nav-link glow-text" data-i18n="nav.about">About</a></li>
-                <li class="lang-picker">
-                    <select id="lang-switch" class="lang-select">
-                        <option value="es">ESP</option>
-                        <option value="en">ENG</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div id="site-header"></div>
 
     <main class="generative-layout gallery">
         <div class="viewer-container">
@@ -502,6 +487,7 @@
         }, {passive: true});
 
     </script>
+    <script src="js/header.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
     <script type="module" src="js/i18n.js"></script>

@@ -39,6 +39,29 @@ class I18nManager {
                 
             }
         });
+
+
+        const langSelect2 = $('#lang-switch-mobile');
+        if (!langSelect2.length) return;
+
+        // Ensure the correct default value is set before initializing selectize
+        langSelect2.val(this.currentLang);
+
+        langSelect2.selectize({
+            create: false,
+            onChange: (value) => {
+                if (value) {
+                    this.setLanguage(value);
+                }
+            },
+            onInitialize: function() {
+                const self = this;
+                let isOpenBefore = false;
+                
+                // Mousedown capta el estado ANTES de que selectize dispare sus eventos nativos
+                
+            }
+        });
     }
 
     setLanguage(lang) {

@@ -15,22 +15,7 @@
 
 
 <body class="theme-dark-sea is-home">
-    <nav class="neon-navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo glow-text">Pashekun</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link glow-text" data-i18n="nav.home">Inicio</a></li>
-                <li><a href="generative.html" class="nav-link glow-text" data-i18n="nav.generative">Generative</a></li>
-                <li><a href="about.html" class="nav-link glow-text active" data-i18n="nav.about">About</a></li>
-                <li class="lang-picker">
-                    <select id="lang-switch" class="lang-select">
-                        <option value="es">ESP</option>
-                        <option value="en">ENG</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div id="site-header"></div>
 
     <main class="container pb-5 mt-4 mb-5 home">
         <div class="row align-items-center my-5 mb-5">
@@ -257,8 +242,9 @@
     document.querySelectorAll('.ig-grid-item').forEach(el => observer.observe(el));
     </script> 
     
+    <script src="js/header.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
-    <script type="module" src="js/i18n.js"></script>  
+    <script type="module" src="js/i18n.js"></script>
 </body>
 </html>
