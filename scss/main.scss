@@ -14,6 +14,39 @@
 @import "components/navbar";
 @import "components/social";
 @import "components/gallery";
+@import "components/about";
+@import "components/projects";
+@import "components/footer";
 @import "components/i18n";
 // @import "themes/dark-sea";
 // @import "themes/neon";
+
+// ─── Global Stacking Context Fix ──────────────────────────────
+// Prevents page content (cards, images, sections) from rendering
+// on top of the sticky header when they have transforms or position:relative.
+main,
+main > *,
+main .row,
+main .col-12,
+main .col-md-6,
+main .col-lg-4,
+main .col-lg-6,
+main .col-lg-8 {
+  // Any positioned child that creates a stacking context must be below the header
+  z-index: auto;
+}
+
+// Cards and interactive elements get a low, explicit z-index so transforms
+// (used in hover effects) don't accidentally climb above the header.
+.project-card,
+.ig-grid-item,
+.ig-link,
+.skill-badge,
+.timeline-item {
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    z-index: 2;
+  }
+}

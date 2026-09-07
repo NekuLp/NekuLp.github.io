@@ -8,8 +8,9 @@
 (function () {
     const NAV_LINKS = [
         { href: 'index.html',      labelKey: 'nav.home',       label: 'Inicio'    },
-        { href: 'generative.html', labelKey: 'nav.generative',  label: 'Generative'},
-        { href: 'about.html',      labelKey: 'nav.about',       label: 'About'     },
+        { href: 'about.html',      labelKey: 'nav.about',      label: 'About'     },
+        { href: 'projects.html',   labelKey: 'nav.projects',   label: 'Proyectos' },
+        { href: 'generative.html', labelKey: 'nav.generative', label: 'Generative'}        
     ];
 
     /** Detect which page we are on by matching the filename */

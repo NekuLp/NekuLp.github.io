@@ -1,0 +1,112 @@
+// _about.scss
+
+.about-page {
+    .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .skill-badge {
+        background-color: rgba(44, 229, 116, 0.1);
+        border: 1px solid rgba(44, 229, 116, 0.4);
+        color: #2ce574;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-family: 'Datatype', sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 5px rgba(44, 229, 116, 0.3);
+
+        &:hover {
+            background-color: rgba(44, 229, 116, 0.2);
+            border-color: #2ce574;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(44, 229, 116, 0.2);
+        }
+    }
+
+    .timeline {
+        border-left: 2px solid rgba(217, 0, 128, 0.3);
+        padding-left: 20px;
+        margin-left: 10px;
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: -27px;
+                top: 5px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: #112b32;
+                border: 2px solid #d90080;
+                box-shadow: 0 0 8px rgba(217, 0, 128, 0.6);
+            }
+
+            .timeline-date {
+                font-family: 'Rubik Mono One', sans-serif;
+                font-size: 0.8rem;
+                color: #2ce574;
+                margin-bottom: 5px;
+                letter-spacing: 1px;
+            }
+
+            .timeline-role {
+                font-family: 'Rubik Mono One', sans-serif;
+                font-size: 1.2rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 2px;
+            }
+
+            .timeline-desc {
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.5;
+                margin: 0;
+            }
+
+            .timeline-company {
+                font-family: 'Datatype', sans-serif;
+                font-size: 1.1rem;
+                color: #d90080;
+                margin-bottom: 10px;
+            }
+
+            ul {
+                padding-left: 15px;
+                margin-bottom: 0;
+                
+                li {
+                    font-family: 'Datatype', sans-serif;
+                    font-size: 1.1rem;
+                    color: rgba(255, 255, 255, 0.7);
+                    margin-bottom: 5px;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+
+    .github-chart-container {
+        scrollbar-width: thin;
+        scrollbar-color: #d90080 #112b32;
+        
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background: #112b32;
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #d90080;
+            border-radius: 4px;
+        }
+    }
+}

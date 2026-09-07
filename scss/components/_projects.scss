@@ -1,0 +1,236 @@
+// _projects.scss
+
+.projects-page {
+    .project-card {
+        background-color: rgba(17, 43, 50, 0.6);
+        border: 1px solid rgba(44, 229, 116, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &:hover {
+            transform: translateY(-5px);
+            border-color: #2ce574;
+            box-shadow: 0 10px 20px rgba(17, 43, 50, 0.8), 0 0 15px rgba(44, 229, 116, 0.2);
+
+            .project-card-img {
+                img {
+                    transform: scale(1.05);
+                }
+                .project-card-overlay {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .project-card-img {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .project-card-overlay {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(17, 43, 50, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+
+                .view-btn {
+                    background: transparent;
+                    border: 1px solid #2ce574;
+                    color: #2ce574;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-family: 'Rubik Mono One', sans-serif;
+                    font-size: 0.8rem;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .project-card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+
+            .project-title {
+                font-family: 'Rubik Mono One', sans-serif;
+                font-size: 1.2rem;
+                color: #fff;
+                margin-bottom: 5px;
+            }
+
+            .project-role {
+                font-family: 'Datatype', sans-serif;
+                color: #d90080;
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+
+            .project-tech {
+                margin-top: auto;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+
+                span {
+                    font-size: 0.8rem;
+                    background: rgba(255,255,255,0.05);
+                    padding: 4px 10px;
+                    border-radius: 12px;
+                    color: rgba(255,255,255,0.8);
+                    font-family: 'Datatype', sans-serif;
+                }
+            }
+        }
+    }
+}
+
+// Modal Styles
+.custom-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &.fade-hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .custom-modal-backdrop {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(10, 20, 25, 0.85);
+        backdrop-filter: blur(5px);
+    }
+
+    .custom-modal-content {
+        position: relative;
+        background: #112b32;
+        border: 1px solid #d90080;
+        border-radius: 12px;
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(217, 0, 128, 0.3);
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #d90080;
+            border-radius: 4px;
+        }
+
+        .custom-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            line-height: 1;
+            transition: color 0.3s;
+
+            &:hover {
+                color: #d90080;
+            }
+        }
+
+        .custom-modal-body {
+            padding: 30px;
+
+            .modal-img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .modal-title {
+                font-family: 'Rubik Mono One', sans-serif;
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+
+            .modal-company {
+                font-family: 'Datatype', sans-serif;
+                font-size: 1.1rem;
+                color: rgba(255,255,255,0.8);
+                margin-bottom: 15px;
+            }
+
+            .modal-tech {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+
+                span {
+                    font-size: 0.9rem;
+                    background: rgba(44, 229, 116, 0.1);
+                    border: 1px solid rgba(44, 229, 116, 0.4);
+                    padding: 6px 12px;
+                    border-radius: 15px;
+                    color: #2ce574;
+                    font-family: 'Datatype', sans-serif;
+                }
+            }
+
+            .modal-desc {
+                font-family: 'Datatype', sans-serif;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: rgba(255,255,255,0.9);
+            }
+
+            .modal-action-btn {
+                background: rgba(44, 229, 116, 0.1);
+                border: 1px solid #2ce574;
+                color: #2ce574;
+                padding: 10px 24px;
+                border-radius: 30px;
+                font-family: 'Rubik Mono One', sans-serif;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+
+                &:hover {
+                    background: #2ce574;
+                    color: #112b32;
+                    box-shadow: 0 0 15px rgba(44, 229, 116, 0.4);
+                }
+            }
+        }
+    }
+}

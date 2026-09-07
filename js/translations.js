@@ -5,6 +5,7 @@ export const translations = {
         "nav.home": "Inicio",
         "nav.generative": "Generative",
         "nav.about": "About",
+        "nav.projects": "Proyectos",
 
         // Index
         "index.title": "Quien soy",
@@ -16,9 +17,47 @@ export const translations = {
         "index.cta": "Explorar galería",
 
         // About
-        "about.title": "Un poco más de mí",
-        "about.p1": "Todavianosequeponeraqui:)",
-        "about.h2": "Fotos y Memorias",
+        "about.title": "Sobre mí",
+        "about.p1": "Soy un desarrollador Full Stack con más de 7 años de experiencia en el desarrollo de aplicaciones web y soluciones digitales. Apasionado por el software, el arte generativo y la innovación tecnológica.",
+        "about.p2": "Me caracteriza la curiosidad constante, la atención al detalle y el compromiso por crear productos eficientes, escalables y visualmente atractivos.",
+        "about.exp.title": "Experiencia Profesional",
+        "about.edu.title": "Educación",
+        "about.skills.title": "Habilidades y Conocimientos",
+        "about.github.title": "Actividad en GitHub",
+        "about.photos.title": "Fotos y Memorias",
+        "about.music.title": "Música",
+        
+        // Experience Data (ES)
+        "exp.espina.role": "Backend Developer",
+        "exp.espina.company": "Espina Studio (antes Anagrama Studio)",
+        "exp.espina.date": "2023 - 2026",
+        "exp.espina.desc1": "Desarrollo y optimización de flows y procesos backend en proyectos web.",
+        "exp.espina.desc2": "Especialización en la creación y personalización de themes en Shopify.",
+        "exp.espina.desc3": "Colaboración con equipos de diseño y frontend para integrar soluciones completas.",
+        
+        "exp.onda.role": "Freelance Web Designer",
+        "exp.onda.company": "Onda Sonora",
+        "exp.onda.date": "2022",
+        "exp.onda.desc1": "Diseño y desarrollo de un sitio web informativo para un estudio de música en Hermosillo.",
+        "exp.onda.desc2": "Creación de pantallas de contacto e información comercial priorizando UX.",
+        
+        "exp.nft.role": "Freelance Backend Developer",
+        "exp.nft.company": "House of Rare NFT Marketplace",
+        "exp.nft.date": "2022",
+        "exp.nft.desc1": "Participación en una startup de NFTs y tequila artesanal.",
+        "exp.nft.desc2": "Contribución en el diseño UI y desarrollo frontend de la plataforma.",
+        
+        "exp.anagrama.role": "Full Stack Developer",
+        "exp.anagrama.company": "Anagrama Studio",
+        "exp.anagrama.date": "2019 - 2022",
+        "exp.anagrama.desc1": "Desarrollo de APIs, estructuras de datos y sistemas de gestión de contenido.",
+        "exp.anagrama.desc2": "Implementación de soluciones técnicas enfocadas en rendimiento y escalabilidad.",
+
+        // Projects
+        "projects.title": "Proyectos Destacados",
+        "projects.subtitle": "Una selección de mis trabajos en desarrollo web y plataformas digitales.",
+        "projects.modal.close": "Cerrar",
+        "projects.modal.link": "Ver Proyecto",
 
         // Generative
         "gen.explore": "Explore Gallery",
@@ -56,6 +95,7 @@ export const translations = {
         "nav.home": "Home",
         "nav.generative": "Generative",
         "nav.about": "About",
+        "nav.projects": "Projects",
 
         // Index
         "index.title": "Who I Am",
@@ -67,9 +107,47 @@ export const translations = {
         "index.cta": "Explore gallery",
 
         // About
-        "about.title": "A bit more about me",
-        "about.p1": "Istilldontknowwhattoputhere:)",
-        "about.h2": "Photos & Memories",
+        "about.title": "About me",
+        "about.p1": "I am a Full Stack Developer with over 7 years of experience building web applications and digital solutions. Passionate about software, generative art, and technological innovation.",
+        "about.p2": "I am driven by constant curiosity, attention to detail, and a commitment to creating efficient, scalable, and visually appealing products.",
+        "about.exp.title": "Professional Experience",
+        "about.edu.title": "Education",
+        "about.skills.title": "Skills & Knowledge",
+        "about.github.title": "GitHub Activity",
+        "about.photos.title": "Photos & Memories",
+        "about.music.title": "Music",
+        
+        // Experience Data (EN)
+        "exp.espina.role": "Backend Developer",
+        "exp.espina.company": "Espina Studio (formerly Anagrama)",
+        "exp.espina.date": "2023 - 2026",
+        "exp.espina.desc1": "Development and optimization of backend flows and processes for web projects.",
+        "exp.espina.desc2": "Specialized in the creation and customization of Shopify themes.",
+        "exp.espina.desc3": "Collaboration with design and frontend teams to integrate high-performance solutions.",
+        
+        "exp.onda.role": "Freelance Web Designer",
+        "exp.onda.company": "Onda Sonora",
+        "exp.onda.date": "2022",
+        "exp.onda.desc1": "Design and development of an informative website for a music studio in Hermosillo.",
+        "exp.onda.desc2": "Creation of contact and commercial screens, prioritizing user experience (UX).",
+        
+        "exp.nft.role": "Freelance Backend Developer",
+        "exp.nft.company": "House of Rare NFT Marketplace",
+        "exp.nft.date": "2022",
+        "exp.nft.desc1": "Participation in a startup for NFTs and artisanal tequila.",
+        "exp.nft.desc2": "Contributed to UI design and frontend development of the platform.",
+        
+        "exp.anagrama.role": "Full Stack Developer",
+        "exp.anagrama.company": "Anagrama Studio",
+        "exp.anagrama.date": "2019 - 2022",
+        "exp.anagrama.desc1": "Development of APIs, data structures, and content management systems.",
+        "exp.anagrama.desc2": "Implementation of technical solutions focused on performance and scalability.",
+
+        // Projects
+        "projects.title": "Featured Projects",
+        "projects.subtitle": "A selection of my work in web development and digital platforms.",
+        "projects.modal.close": "Close",
+        "projects.modal.link": "View Project",
 
         // Generative
         "gen.explore": "Explore Gallery",
@@ -103,3 +181,4 @@ export const translations = {
         "sketch.desc.lava": "Using techniques from the 90s, this sketch simulates the palette cycling used to simulate lava in supernintendo games and the like. Agents appear randomly, and their shape is also random which makes it simulate craters."
     }
 };
+

@@ -22,15 +22,17 @@ $bp-md: 768px; // must match Bootstrap md breakpoint
   position: sticky;
   top: 0;
   z-index: 1000;
+  isolation: isolate;           // create own stacking context so children don't bleed out
   display: flex;
   flex-direction: column;       // stacks nav-container + menu-mobile
   align-items: center;
   padding: 1rem 0 0;            // remove bottom padding; menu-mobile adds its own
 }
 
-#site-header{
+#site-header {
   position: sticky;
-    top: 0;
+  top: 0;
+  z-index: 1000;                // Guarantee the host element is above all page content
 }
 
 @keyframes cyber-border-glitch {
@@ -136,17 +138,21 @@ $bp-md: 768px; // must match Bootstrap md breakpoint
   max-height: 0;
   // overflow: hidden;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 
     position: absolute;
     top: 54px;
     background: linear-gradient(0deg, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0) 50%), linear-gradient(180deg, rgb(255 212 0 / 71%), rgba(0, 0, 0, 0) 100%);
 
   // Fade + slide-down transition
-  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease, visibility 0.3s ease;
 
   &.show {
     max-height: 400px;  // large enough for all links
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     padding-bottom: 1rem;
   }
 

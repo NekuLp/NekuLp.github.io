@@ -17,22 +17,134 @@
 <body class="theme-dark-sea is-home">
     <div id="site-header"></div>
 
-    <main class="container pb-5 mt-4 mb-5 home">
+    <main class="container pb-5 mt-4 mb-5 about-page">
+        <!-- Bio Section -->
         <div class="row align-items-center my-5 mb-5">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h1 class="glow-text mb-4" data-i18n="about.title">Un poco más de mí</h1>
-                <p class="mb-3" data-i18n="about.p1">Todavianosequeponeraqui:)</p>                
+            <div class="col-lg-8">
+                <h1 class="glow-text mb-4" data-i18n="about.title">Sobre mí</h1>
+                <p class="mb-3 lead" data-i18n="about.p1">Soy un desarrollador Full Stack con más de 7 años de experiencia en el desarrollo de aplicaciones web y soluciones digitales. Apasionado por el software, el arte generativo y la innovación tecnológica.</p>
+                <p class="mb-4" data-i18n="about.p2">Me caracteriza la curiosidad constante, la atención al detalle y el compromiso por crear productos eficientes, escalables y visualmente atractivos.</p>
             </div>
-            <div class="col-lg-6 d-flex justify-content-center align-items-center" style="min-height: 400px; padding: 20px;">
-                <!-- Wrapper explicitly sized to exactly match the 2x2 grid of open windows -->
-                <div id="webamp-app" style="position: relative; width: 550px; height: 232px;">
+        </div>
+        
+        <!-- Skills Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="glow-text h3 border-top pt-5 mb-4" data-i18n="about.skills.title">Habilidades y Conocimientos</h2>
+            </div>
+            <div class="col-12">
+                <div class="skills-grid">
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">React / Next.js</span>
+                    <span class="skill-badge">Python / Django</span>
+                    <span class="skill-badge">Ruby on Rails</span>
+                    <span class="skill-badge">Node.js / Express</span>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">HTML / CSS / SASS</span>
+                    <span class="skill-badge">Shopify / Liquid</span>
+                    <span class="skill-badge">WordPress / PHP</span>
+                    <span class="skill-badge">Git / GitHub</span>
+                    <span class="skill-badge">p5.js</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Education Section -->
+        <div class="row mb-5">
+            <!-- Experience -->
+            <div class="col-lg-7 mb-5 mb-lg-0">
+                <h2 class="glow-text h3 border-top pt-5 mb-4" data-i18n="about.exp.title">Experiencia Profesional</h2>
+                <div class="timeline">
+                    <!-- Espina -->
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-i18n="exp.espina.date">2023 - 2026</div>
+                        <h3 class="timeline-role" data-i18n="exp.espina.role">Backend Developer</h3>
+                        <h4 class="timeline-company" data-i18n="exp.espina.company">Espina Studio (antes Anagrama Studio)</h4>
+                        <ul>
+                            <li data-i18n="exp.espina.desc1">Desarrollo y optimización de flows y procesos backend en proyectos web.</li>
+                            <li data-i18n="exp.espina.desc2">Especialización en la creación y personalización de themes en Shopify.</li>
+                            <li data-i18n="exp.espina.desc3">Colaboración con equipos de diseño y frontend para integrar soluciones completas.</li>
+                        </ul>
+                    </div>
+                    <!-- Onda Sonora -->
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-i18n="exp.onda.date">2022</div>
+                        <h3 class="timeline-role" data-i18n="exp.onda.role">Freelance Web Designer</h3>
+                        <h4 class="timeline-company" data-i18n="exp.onda.company">Onda Sonora</h4>
+                        <ul>
+                            <li data-i18n="exp.onda.desc1">Diseño y desarrollo de un sitio web informativo para un estudio de música en Hermosillo.</li>
+                            <li data-i18n="exp.onda.desc2">Creación de pantallas de contacto e información comercial priorizando UX.</li>
+                        </ul>
+                    </div>
+                    <!-- NFT -->
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-i18n="exp.nft.date">2022</div>
+                        <h3 class="timeline-role" data-i18n="exp.nft.role">Freelance Backend Developer</h3>
+                        <h4 class="timeline-company" data-i18n="exp.nft.company">House of Rare NFT Marketplace</h4>
+                        <ul>
+                            <li data-i18n="exp.nft.desc1">Participación en una startup de NFTs y tequila artesanal.</li>
+                            <li data-i18n="exp.nft.desc2">Contribución en el diseño UI y desarrollo frontend de la plataforma.</li>
+                        </ul>
+                    </div>
+                    <!-- Anagrama -->
+                    <div class="timeline-item">
+                        <div class="timeline-date" data-i18n="exp.anagrama.date">2019 - 2022</div>
+                        <h3 class="timeline-role" data-i18n="exp.anagrama.role">Full Stack Developer</h3>
+                        <h4 class="timeline-company" data-i18n="exp.anagrama.company">Anagrama Studio</h4>
+                        <ul>
+                            <li data-i18n="exp.anagrama.desc1">Desarrollo de APIs, estructuras de datos y sistemas de gestión de contenido.</li>
+                            <li data-i18n="exp.anagrama.desc2">Implementación de soluciones técnicas enfocadas en rendimiento y escalabilidad.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Education -->
+            <div class="col-lg-5">
+                <h2 class="glow-text h3 border-top pt-5 mb-4" data-i18n="about.edu.title">Educación</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2013 - 2018</div>
+                        <h3 class="timeline-role">Ingeniería en Sistemas Computacionales</h3>
+                        <h4 class="timeline-company">Instituto Tecnológico de Hermosillo</h4>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2009 - 2013</div>
+                        <h3 class="timeline-role">Técnico en Programación</h3>
+                        <h4 class="timeline-company">CBTIS no.11</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Activity Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="glow-text h3 border-top pt-5 mb-4" data-i18n="about.github.title">Actividad en GitHub</h2>
+            </div>
+            <div class="col-12">
+                <div class="github-chart-container text-center p-3 rounded" style="background: rgba(25, 42, 50, 0.5); overflow-x: auto; border: 1px solid rgba(44, 229, 116, 0.2);">
+                    <img src="https://ghchart.rshah.org/NekuLp" alt="GitHub Contributions Chart" style="min-width: 700px; max-width: 100%;">
                 </div>
             </div>
         </div>
         
+        <!-- Webamp & Music -->
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="glow-text h3 border-top pt-5 mb-4" data-i18n="about.music.title">Música</h2>
+                <p>También me gusta la música y tengo mis propios tracks. Reproducelos aquí en mi reproductor de Winamp.</p>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-center align-items-center" style="min-height: 400px; padding: 20px;">
+                <!-- Wrapper explicitly sized to exactly match the 2x2 grid of open windows -->
+                <div id="webamp-app" style="position: relative; width: 550px; height: 232px; z-index: 10;">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Photos Section -->
         <div class="row mb-5">
             <div class="col-12 text-center mt-5">
-                <h2 class="glow-text h3 border-top pt-5" data-i18n="about.h2">Fotos y Memorias</h2>                                
+                <h2 class="glow-text h3 border-top pt-5" data-i18n="about.photos.title">Fotos y Memorias</h2>                                
             </div>
         </div>
         <div class="row mb-5">
@@ -246,5 +358,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"></script>
     <script type="module" src="js/i18n.js"></script>
+    <script src="js/footer.js"></script>
 </body>
 </html>

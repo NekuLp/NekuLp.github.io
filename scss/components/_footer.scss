@@ -1,0 +1,67 @@
+// _footer.scss
+
+.site-footer {
+    background-color: rgba(17, 43, 50, 0.8);
+    border-top: 1px solid rgba(44, 229, 116, 0.3);
+    padding: 30px 0;
+    margin-top: 40px;
+    font-family: 'Datatype', sans-serif;
+
+    .glow-text {
+        font-family: 'Rubik Mono One', sans-serif;
+        font-size: 1rem;
+        color: #fff;
+    }
+    
+    .text-muted {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .download-cv-btn {
+        display: inline-block;
+        background: transparent;
+        border: 1px solid #d90080;
+        color: #d90080;
+        padding: 8px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-family: 'Rubik Mono One', sans-serif;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+
+        i {
+            margin-right: 8px;
+        }
+
+        &:hover {
+            background: #d90080;
+            color: #112b32;
+            box-shadow: 0 0 15px rgba(217, 0, 128, 0.5);
+            transform: translateY(-2px);
+        }
+    }
+
+    .footer-social-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+
+        @media (min-width: 768px) {
+            justify-content: flex-end;
+        }
+
+        li a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+
+            &:hover {
+                color: #2ce574;
+                transform: scale(1.1) translateY(-2px);
+            }
+        }
+    }
+}

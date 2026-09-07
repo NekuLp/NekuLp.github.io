@@ -11974,6 +11974,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 1000;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11983,6 +11984,7 @@ p {
 #site-header {
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
 @keyframes cyber-border-glitch {
@@ -12086,14 +12088,18 @@ p {
   width: 100%;
   max-height: 0;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   position: absolute;
   top: 54px;
   background: linear-gradient(0deg, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0) 50%), linear-gradient(180deg, rgba(255, 212, 0, 0.71), rgba(0, 0, 0, 0) 100%);
-  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease, visibility 0.3s ease;
 }
 .menu-mobile.show {
   max-height: 400px;
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   padding-bottom: 1rem;
 }
 .menu-mobile__list {
@@ -12254,6 +12260,374 @@ p {
   object-fit: cover; /* This makes sure the image fills its grid cell perfectly without stretching */
 }
 
+.about-page .skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+.about-page .skill-badge {
+  background-color: rgba(44, 229, 116, 0.1);
+  border: 1px solid rgba(44, 229, 116, 0.4);
+  color: #2ce574;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: "Datatype", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(44, 229, 116, 0.3);
+}
+.about-page .skill-badge:hover {
+  background-color: rgba(44, 229, 116, 0.2);
+  border-color: #2ce574;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(44, 229, 116, 0.2);
+}
+.about-page .timeline {
+  border-left: 2px solid rgba(217, 0, 128, 0.3);
+  padding-left: 20px;
+  margin-left: 10px;
+}
+.about-page .timeline .timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+}
+.about-page .timeline .timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #112b32;
+  border: 2px solid #d90080;
+  box-shadow: 0 0 8px rgba(217, 0, 128, 0.6);
+}
+.about-page .timeline .timeline-item .timeline-date {
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 0.8rem;
+  color: #2ce574;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+.about-page .timeline .timeline-item .timeline-role {
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2px;
+}
+.about-page .timeline .timeline-item .timeline-desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+.about-page .timeline .timeline-item .timeline-company {
+  font-family: "Datatype", sans-serif;
+  font-size: 1.1rem;
+  color: #d90080;
+  margin-bottom: 10px;
+}
+.about-page .timeline .timeline-item ul {
+  padding-left: 15px;
+  margin-bottom: 0;
+}
+.about-page .timeline .timeline-item ul li {
+  font-family: "Datatype", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+.about-page .github-chart-container {
+  scrollbar-width: thin;
+  scrollbar-color: #d90080 #112b32;
+}
+.about-page .github-chart-container::-webkit-scrollbar {
+  height: 8px;
+}
+.about-page .github-chart-container::-webkit-scrollbar-track {
+  background: #112b32;
+  border-radius: 4px;
+}
+.about-page .github-chart-container::-webkit-scrollbar-thumb {
+  background-color: #d90080;
+  border-radius: 4px;
+}
+
+.projects-page .project-card {
+  background-color: rgba(17, 43, 50, 0.6);
+  border: 1px solid rgba(44, 229, 116, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.projects-page .project-card:hover {
+  transform: translateY(-5px);
+  border-color: #2ce574;
+  box-shadow: 0 10px 20px rgba(17, 43, 50, 0.8), 0 0 15px rgba(44, 229, 116, 0.2);
+}
+.projects-page .project-card:hover .project-card-img img {
+  transform: scale(1.05);
+}
+.projects-page .project-card:hover .project-card-img .project-card-overlay {
+  opacity: 1;
+}
+.projects-page .project-card .project-card-img {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.projects-page .project-card .project-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.projects-page .project-card .project-card-img .project-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 43, 50, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.projects-page .project-card .project-card-img .project-card-overlay .view-btn {
+  background: transparent;
+  border: 1px solid #2ce574;
+  color: #2ce574;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.projects-page .project-card .project-card-body {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.projects-page .project-card .project-card-body .project-title {
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.projects-page .project-card .project-card-body .project-role {
+  font-family: "Datatype", sans-serif;
+  color: #d90080;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+.projects-page .project-card .project-card-body .project-tech {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.projects-page .project-card .project-card-body .project-tech span {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Datatype", sans-serif;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.custom-modal.fade-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.custom-modal .custom-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 20, 25, 0.85);
+  backdrop-filter: blur(5px);
+}
+.custom-modal .custom-modal-content {
+  position: relative;
+  background: #112b32;
+  border: 1px solid #d90080;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(217, 0, 128, 0.3);
+}
+.custom-modal .custom-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-modal .custom-modal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.custom-modal .custom-modal-content::-webkit-scrollbar-thumb {
+  background-color: #d90080;
+  border-radius: 4px;
+}
+.custom-modal .custom-modal-content .custom-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+  transition: color 0.3s;
+}
+.custom-modal .custom-modal-content .custom-modal-close:hover {
+  color: #d90080;
+}
+.custom-modal .custom-modal-content .custom-modal-body {
+  padding: 30px;
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-title {
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-company {
+  font-family: "Datatype", sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 15px;
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-tech span {
+  font-size: 0.9rem;
+  background: rgba(44, 229, 116, 0.1);
+  border: 1px solid rgba(44, 229, 116, 0.4);
+  padding: 6px 12px;
+  border-radius: 15px;
+  color: #2ce574;
+  font-family: "Datatype", sans-serif;
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-desc {
+  font-family: "Datatype", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-action-btn {
+  background: rgba(44, 229, 116, 0.1);
+  border: 1px solid #2ce574;
+  color: #2ce574;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+.custom-modal .custom-modal-content .custom-modal-body .modal-action-btn:hover {
+  background: #2ce574;
+  color: #112b32;
+  box-shadow: 0 0 15px rgba(44, 229, 116, 0.4);
+}
+
+.site-footer {
+  background-color: rgba(17, 43, 50, 0.8);
+  border-top: 1px solid rgba(44, 229, 116, 0.3);
+  padding: 30px 0;
+  margin-top: 40px;
+  font-family: "Datatype", sans-serif;
+}
+.site-footer .glow-text, .site-footer .lang-picker .selectize-input.has-items > .item, .lang-picker .site-footer .selectize-input.has-items > .item {
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+}
+.site-footer .text-muted {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.site-footer .download-cv-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #d90080;
+  color: #d90080;
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+.site-footer .download-cv-btn i {
+  margin-right: 8px;
+}
+.site-footer .download-cv-btn:hover {
+  background: #d90080;
+  color: #112b32;
+  box-shadow: 0 0 15px rgba(217, 0, 128, 0.5);
+  transform: translateY(-2px);
+}
+.site-footer .footer-social-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+@media (min-width: 768px) {
+  .site-footer .footer-social-links {
+    justify-content: flex-end;
+  }
+}
+.site-footer .footer-social-links li a {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+.site-footer .footer-social-links li a:hover {
+  color: #2ce574;
+  transform: scale(1.1) translateY(-2px);
+}
+
 /* Estilos personalizados para Selectize integrados al Navbar */
 .lang-picker {
   margin-left: auto;
@@ -12352,6 +12726,33 @@ p {
 .selectize-dropdown .selected {
   background-color: transparent !important;
   color: #fff !important;
+}
+
+main,
+main > *,
+main .row,
+main .col-12,
+main .col-md-6,
+main .col-lg-4,
+main .col-lg-6,
+main .col-lg-8 {
+  z-index: auto;
+}
+
+.project-card,
+.ig-grid-item,
+.ig-link,
+.skill-badge,
+.timeline-item {
+  position: relative;
+  z-index: 1;
+}
+.project-card:hover,
+.ig-grid-item:hover,
+.ig-link:hover,
+.skill-badge:hover,
+.timeline-item:hover {
+  z-index: 2;
 }
 
 /*# sourceMappingURL=style.css.map */
