@@ -102,7 +102,7 @@ const projectsData = [
         company: 'Espina Studio',
         tech: ['Shopify', 'Backend', 'API'],
         img: 'img/projects/oakwise.jpg',
-        desc: 'Desarrollo avanzado de backend y personalización de temas en Shopify.',
+        desc: 'Desarrollo avanzado de backend.',
         link: 'https://oakwise.com.mx/'
     },
     {
