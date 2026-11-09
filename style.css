@@ -4,7 +4,7 @@
  * 
  * Compilar: sass scss/main.scss style.css
  */
-@import url("https://fonts.googleapis.com/css2?family=Datatype&family=Rubik+Mono+One&family=Gabarito:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Datatype&family=Archivo+Black&family=Gabarito:wght@400..900&display=swap");
 /*!
  * Bootstrap  v5.2.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -11932,7 +11932,7 @@ h5, .h5,
 h6, .h6,
 .main-title,
 .nav-logo {
-  font-family: "Rubik Mono One", monospace !important;
+  font-family: "Archivo Black", monospace !important;
   font-weight: 400;
   letter-spacing: 1px;
 }

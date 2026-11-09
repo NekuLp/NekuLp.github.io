@@ -11,7 +11,7 @@ export const translations = {
         "index.title": "Quien soy",
         "index.lead": "Ingeniero en sistemas, Desarrollador fullstack y entusiasta del arte generativo",
         "index.p1": "De manera paralela, desarrollo mi interés por el arte generativo como un espacio para experimentar con código y creatividad. Me gusta trabajar en proyectos donde la tecnología y el diseño se cruzan para crear experiencias únicas.",
-        "index.h2": "Sobre Mi Trabajo",
+        "index.h2": "Sobre mi trabajo",
         "index.p2": "Combino desarrollo frontend y backend para construir aplicaciones completas, desde la arquitectura hasta los detalles visuales. Disfruto especialmente trabajar en interfaces dinámicas, animaciones y experiencias interactivas.",
         "index.p3": "En el lado del arte generativo, exploro la intersección entre código, arte y diseño. Me interesa crear piezas visuales que exploren patrones, sistemas y procesos, utilizando herramientas como p5.js para generar composiciones únicas y experimentales.",
         "index.cta": "Explorar galería",
